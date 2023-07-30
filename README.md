@@ -2,6 +2,20 @@
 
 We are small team of developers at the start of our journey.
 
+# Our team
+
+Александр Шершнев
+https://github.com/mr-hornet  
+
+Меружан Ахвердян
+https://github.com/am9999072080
+
+Николай Бычков
+https://github.com/byNikolai
+
+Павел Грудьев
+https://github.com/Pavelgrudev/
+
 # Description: 
 
 In this project we are creating a Telegram bot that will help the animal shelter. The bot will answer users' questions, provide information about the shelter, and help in finding new owners for the animals.
