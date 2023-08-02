@@ -6,6 +6,9 @@ import javax.persistence.*;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+/**
+ * Класс User - сущность пользователя
+ */
 @Entity
 @Table(name = "users")
 @NoArgsConstructor
@@ -45,4 +48,11 @@ public class User {
     public boolean isDog() {
         return isDog;
     }
+
+    public User(Long chatId, String name, boolean isDog) {
+        this.chatId = chatId;
+        this.name = name;
+        this.isDog = isDog;
+    }
 }
+
