@@ -1,13 +1,13 @@
 package Telegram.Bot.AnimalShelter.repository;
 
+import Telegram.Bot.AnimalShelter.entity.CatShelter;
 import org.springframework.data.jpa.repository.JpaRepository;
-import Telegram.Bot.AnimalShelter.entity.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByTelegramId(Long telegramId);
+public interface CatShelterRepository extends JpaRepository<CatShelter, Long> {
+
+    Optional<CatShelter> findByName(String name);
 }

@@ -9,5 +9,4 @@ class AnimalShelterApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

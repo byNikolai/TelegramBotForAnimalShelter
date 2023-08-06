@@ -1,58 +1,39 @@
 package Telegram.Bot.AnimalShelter.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-/**
- * Класс User - сущность пользователя
- */
 @Entity
-@Table(name = "users")
+@Data
+@AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "users")
 public class User {
 
-    /**
-     * Поле: идентификационный номер пользователя
-     */
     @Id
-    @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @Column
+    private Long telegramId;
+    @Column
+    private String firstName;
+    @Column
+    private String lastName;
+    @Column(name = "phone_number")
+    private String phone;
+    @Column(name = "shelter_type")
+    private String shelterType;
+    @Column(name = "shelter_name")
+    private String shelterName;
 
-    /**
-     * Поле: номер чата пользователя
-     */
-    @Column(name = "chat_id")
-    private Long chatId;
-
-    /**
-     * Поле: имя пользователя
-     */
-    @Column(name = "name")
-    private String name;
-
-    /**
-     * Поле: выбор приюта
-     */
-    @Column(name = "is_dog", nullable = false)
-    private boolean isDog = true;
-    //Если пользователь выбирает собачий приют, возвращается true, иначе false
-
-    public void setDog(boolean dog) {
-        isDog = dog;
-    }
-
-    public boolean isDog() {
-        return isDog;
-    }
-
-    public User(Long chatId, String name, boolean isDog) {
-        this.chatId = chatId;
-        this.name = name;
-        this.isDog = isDog;
+    public User(Long telegramId, String firstName, String lastName, String phone) {
+        this.telegramId = telegramId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
     }
 }
 

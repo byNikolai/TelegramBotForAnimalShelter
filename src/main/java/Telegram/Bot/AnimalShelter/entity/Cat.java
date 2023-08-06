@@ -6,14 +6,12 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table(name = "dog")
-public class Dog {
+@Table(name = "cat")
+public class Cat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +35,7 @@ public class Dog {
     @Column
     private Long shelterId;
 
-    public Dog(String name, Integer age, boolean healthy, boolean vaccinated, Long shelterId) {
+    public Cat(String name, Integer age, boolean healthy, boolean vaccinated, Long shelterId) {
         this.name = name;
         this.age = age;
         this.healthy = healthy;
