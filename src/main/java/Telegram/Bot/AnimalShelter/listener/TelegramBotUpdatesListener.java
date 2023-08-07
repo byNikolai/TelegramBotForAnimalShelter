@@ -441,7 +441,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
     }
 
     @Scheduled(cron = "@daily")
-    private void sendTrialPeriodStatus() {
+    private void sendAdaptationStatus() {
         for (User user : userService.getAll()) {
             for (Adaptation trialPeriod : adaptationService.getAllByOwnerId(user.getTelegramId())) {
                 if (trialPeriod.getResult().equals(Adaptation.Result.UNSUCCESSFUL)) {
