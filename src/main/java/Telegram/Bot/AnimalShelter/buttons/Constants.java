@@ -27,7 +27,7 @@ public class Constants {
     public static final String RECOMMENDATIONS_FOR_DOGS = "About dogs";
     public static final String LIST_OF_DOGS = "Our dogs";
     public static final String DOG_TRANSPORTATION = "Dog transportation";
-    public static final String PUPPY_SETUP = "Обустройство щенка";
+    public static final String PUPPY_SETUP = "Setup for puppies";
     public static final String RECOMMENDATIONS_HOME_ARRANGEMENT_KITTEN_PUPPY = "сюда нужно много текста";
     public static final String ADULT_DOG_SETUP = "Setup for adult dogs";
     public static final String RECOMMENDATIONS_HOME_ARRANGEMENT_ADULT_ANIMAL = "сюда нужно много текста";
@@ -41,7 +41,7 @@ public class Constants {
 
 
     public static final String LIST_OF_CATS = "Our cats";
-    public static final String RECOMMENDATIONS_FOR_CATS = "about cats";
+    public static final String RECOMMENDATIONS_FOR_CATS = "About cats";
     public static final String RULES_FOR_DATING_A_CAT = "Rules for dating a cat";
     public static final String CAT_TRANSPORTATION = "Cat transportation";
     public static final String KITTEN_SETUP = "Setup for kitten";
