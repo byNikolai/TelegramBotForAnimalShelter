@@ -64,7 +64,7 @@ class TelegramBotUpdatesListenerTest {
     TelegramBotUpdatesListener telegramBotUpdatesListener;
 
     private final SendResponse sendResponse = BotUtils.fromJson("{ok: true}", SendResponse.class);
-    private final GetFileResponse getFileResponse = BotUtils.fromJson("{ok : true, file : {file_id: qwerty}}", GetFileResponse.class);
+    private final GetFileResponse getFileResponse = BotUtils.fromJson("{ok : true, file : {file_id: lalala}}", GetFileResponse.class);
 
     private final String messageTextJson = Files.readString(
                     Path.of(Objects.requireNonNull(TelegramBotUpdatesListenerTest.class.getResource("/message_update.json")).toURI()));
@@ -73,15 +73,15 @@ class TelegramBotUpdatesListenerTest {
                     Paths.get(Objects.requireNonNull(UpdatesListener.class.getResource("/img/cat.jpg")).toURI()));
 
 
-    private final User catUser = new User(1L, "CatUnderGlue", "", "", "CAT", "SomeShelterName");
-    private final User dogUser = new User(1L, "CatUnderGlue", "", "", "DOG", "SomeShelterName");
-    private final CatShelter catShelter = new CatShelter(1L, "SomeShelterName", "location",
+    private final User catUser = new User(1L, "CatName", "", "", "CAT", "ShelterName");
+    private final User dogUser = new User(1L, "CatName", "", "", "DOG", "ShelterName");
+    private final CatShelter catShelter = new CatShelter(1L, "ShelterName", "location",
             "timetable", "about me", "security", "safety advice");
-    private final DogShelter dogShelter = new DogShelter(1L, "SomeShelterName", "location",
+    private final DogShelter dogShelter = new DogShelter(1L, "ShelterName", "location",
             "timetable", "about me", "security", "safety advice");
     private final Cat cat = new Cat(1L, "CatName", 2, true, true, null, 1L);
     private final Dog dog = new Dog(1L, "DogName", 2, true, true, null, 1L);
-    private final Report report = new Report(1L, 1L, LocalDate.now(), "qwerty", "ration", "health", "behavior");
+    private final Report report = new Report(1L, 1L, LocalDate.now(), "lalala", "ration", "health", "behavior");
     private final Adaptation adaptation;
 
     {
@@ -384,8 +384,8 @@ class TelegramBotUpdatesListenerTest {
     @Test
     void handleMainMenuCommand() {
         Update update = BotUtils.fromJson(messageTextJson.replace("%text%", "Main menu"), Update.class);
-        User user = new User(1L, "CatUnderGlue", "", "", "CAT", "SomeShelterName");
-        User userWithoutShelter = new User(1L, "CatUnderGlue", "", "", null, null);
+        User user = new User(1L, "CatName", "", "", "CAT", "ShelterName");
+        User userWithoutShelter = new User(1L, "CatName", "", "", null, null);
         when(userService.getById(1L)).thenReturn(user);
         when(userService.update(userWithoutShelter)).thenReturn(userWithoutShelter);
         SendMessage actual = getSendMessage(update);
