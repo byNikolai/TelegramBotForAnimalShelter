@@ -22,12 +22,12 @@ class UserServiceImplTest {
     private final String testLastName = "LName";
     private final String testPhone = "11111111";
     private final String testShelterType = "CAT";
-    private final User validUser = new User(telegramId, testFirstName, testLastName, testPhone);
-    private final User secondValidUser = new User(telegramId, testLastName, null, testPhone);
-    private final User thirdValidUser = new User(telegramId, testLastName, testLastName, testPhone);
-    private final User validUserWithShelterType = new User(telegramId, testLastName, testLastName, testPhone,
+    private final User user1 = new User(telegramId, testFirstName, testLastName, testPhone);
+    private final User user2 = new User(telegramId, testLastName, null, testPhone);
+    private final User user3 = new User(telegramId, testLastName, testLastName, testPhone);
+    private final User user1WithShelterType = new User(telegramId, testLastName, testLastName, testPhone,
             testShelterType, null);
-    private final List<User> listOfUser = List.of(validUser);
+    private final List<User> listOfUser = List.of(user1);
 
     @Mock
     UserRepository userRepositoryMock;
@@ -37,23 +37,23 @@ class UserServiceImplTest {
 
     @Test
     void shouldCreateAndReturnUserWithAllArgs() {
-        when(userRepositoryMock.save(validUser)).thenReturn(validUser);
-        User actual = userService.create(validUser);
-        assertEquals(validUser, actual);
-        verify(userRepositoryMock, times(1)).save(validUser);
+        when(userRepositoryMock.save(user1)).thenReturn(user1);
+        User actual = userService.create(user1);
+        assertEquals(user1, actual);
+        verify(userRepositoryMock, times(1)).save(user1);
     }
 
     @Test
     void shouldReturnUserFoundById() {
-        when(userRepositoryMock.findByTelegramId(telegramId)).thenReturn(Optional.of(validUser));
+        when(userRepositoryMock.findByTelegramId(telegramId)).thenReturn(Optional.of(user1));
         User actual = userService.getById(telegramId);
-        assertEquals(validUser, actual);
+        assertEquals(user1, actual);
         verify(userRepositoryMock, times(1)).findByTelegramId(telegramId);
     }
 
     @Test
     void shouldReturnShelterTypeFoundById() {
-        when(userRepositoryMock.findByTelegramId(telegramId)).thenReturn(Optional.of(validUserWithShelterType));
+        when(userRepositoryMock.findByTelegramId(telegramId)).thenReturn(Optional.of(user1WithShelterType));
         String actual = userService.getShelterById(telegramId);
         assertEquals(testShelterType, actual);
         verify(userRepositoryMock, times(1)).findByTelegramId(telegramId);
@@ -83,18 +83,18 @@ class UserServiceImplTest {
 
     @Test
     void shouldUpdateUserWithoutNullFields() {
-        when(userRepositoryMock.findByTelegramId(telegramId)).thenReturn(Optional.of(validUser));
-        when(userRepositoryMock.save(thirdValidUser)).thenReturn(thirdValidUser);
-        User actual = userService.update(secondValidUser);
-        assertEquals(thirdValidUser, actual);
+        when(userRepositoryMock.findByTelegramId(telegramId)).thenReturn(Optional.of(user1));
+        when(userRepositoryMock.save(user3)).thenReturn(user3);
+        User actual = userService.update(user2);
+        assertEquals(user3, actual);
         verify(userRepositoryMock, times(1)).findByTelegramId(telegramId);
-        verify(userRepositoryMock, times(1)).save(thirdValidUser);
+        verify(userRepositoryMock, times(1)).save(user3);
     }
 
     @Test
     void shouldThrowNotFoundExWhenUpdatingUser() {
         when(userRepositoryMock.findByTelegramId(telegramId)).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class, () -> userService.update(validUser));
+        assertThrows(NotFoundException.class, () -> userService.update(user1));
         verify(userRepositoryMock, times(1)).findByTelegramId(telegramId);
     }
 
@@ -108,7 +108,7 @@ class UserServiceImplTest {
     @Test
     void shouldThrowNotFoundExWhenDeletingUser() {
         when(userRepositoryMock.findByTelegramId(telegramId)).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class, () -> userService.delete(validUser));
+        assertThrows(NotFoundException.class, () -> userService.delete(user1));
         verify(userRepositoryMock, times(1)).findByTelegramId(telegramId);
     }
 }
