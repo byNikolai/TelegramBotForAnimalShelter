@@ -53,7 +53,7 @@ public class DogOwnerServiceImpl implements DogOwnerService {
         }
         DogOwner dogOwner = new DogOwner(userService.getById(id));
         adaptationService.create(new Adaptation(
-                id,
+                        id,
                         animalId,
                         animalType,
                         LocalDate.now(),
