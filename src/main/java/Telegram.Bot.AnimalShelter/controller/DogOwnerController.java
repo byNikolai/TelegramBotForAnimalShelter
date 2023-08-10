@@ -14,12 +14,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("dogOwners")
-@Tag(name = "Владелец собаки", description = "CRUD-методы для работы с владельцами собак")
+@Tag(name = "Dog owner", description = "CRUD-methods for DogOwner class")
 @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Всё хорошо, запрос выполнился."),
-        @ApiResponse(responseCode = "400", description = "Есть ошибка в параметрах запроса."),
-        @ApiResponse(responseCode = "404", description = "URL неверный или такого действия нет в веб-приложении."),
-        @ApiResponse(responseCode = "500", description = "Во время выполнения запроса произошла ошибка на сервере.")
+        @ApiResponse(responseCode = "200", description = "Successfully done."),
+        @ApiResponse(responseCode = "400", description = "There is a mistake in params."),
+        @ApiResponse(responseCode = "404", description = "URL is incorrect or there is no such action."),
+        @ApiResponse(responseCode = "500", description = "Mistake occur on server during the process.")
 })
 public class DogOwnerController {
     private final DogOwnerService dogOwnerService;
@@ -29,67 +29,50 @@ public class DogOwnerController {
     }
 
     @PostMapping
-    @Operation(
-            summary = "Создать владельца собаки"
-    )
-    public DogOwner create(@RequestParam @Parameter(description = "Телеграм id владельца собаки") Long telegramId,
-                           @RequestParam @Parameter(description = "Имя") String firstName,
-                           @RequestParam @Parameter(description = "Фамилия") String lastName,
-                           @RequestParam @Parameter(description = "Телефон") String phone,
-                           @RequestParam @Parameter(description = "Id собаки") Long animalId) {
+    @Operation(summary = "Create owner")
+    public DogOwner create(@RequestParam @Parameter(description = "Dog owner telegram ID") Long telegramId,
+                           @RequestParam @Parameter(description = "First name") String firstName,
+                           @RequestParam @Parameter(description = "Last name") String lastName,
+                           @RequestParam @Parameter(description = "Phone number") String phone,
+                           @RequestParam @Parameter(description = "Dog ID") Long animalId) {
         return dogOwnerService.create(new DogOwner(telegramId, firstName, lastName, phone,
                 null, null), Adaptation.AnimalType.DOG, animalId);
     }
 
     @PostMapping("/user")
-    @Operation(
-            summary = "Создать владельца собаки в бд из пользователя"
-    )
-    public DogOwner create(@RequestParam @Parameter(description = "Пользователь") Long id,
-                           @RequestParam @Parameter(description = "Id собаки") Long animalId) {
+    @Operation(summary = "Create owner from user")
+    public DogOwner create(@RequestParam @Parameter(description = "User") Long id,
+                           @RequestParam @Parameter(description = "Dog ID") Long animalId) {
         return dogOwnerService.create(id, Adaptation.AnimalType.DOG, animalId);
     }
 
     @GetMapping()
-    @Operation(
-            summary = "Получение списка всех владельцев собак"
-    )
+    @Operation(summary = "Return list of all owners")
     public List<DogOwner> getAll() {
         return dogOwnerService.getAll();
     }
 
     @GetMapping("id")
-    @Operation(
-            summary = "Получение владельца собаки по id"
-    )
-    @Parameter(
-            name = "id",
-            description = "Id владельца собаки",
-            example = "1"
-    )
+    @Operation(summary = "Return dog owner by ID")
     public DogOwner getById(@RequestParam Long dogOwnerId) {
         return dogOwnerService.getById(dogOwnerId);
     }
 
     @PutMapping
-    @Operation(
-            summary = "Изменить владельца собаки"
-    )
-    public DogOwner update(@RequestParam @Parameter(description = "Телеграм id владельца собаки") Long telegramId,
-                           @RequestParam(required = false) @Parameter(description = "Имя") String firstName,
-                           @RequestParam(required = false) @Parameter(description = "Фамилия") String lastName,
-                           @RequestParam(required = false) @Parameter(description = "Телефон") String phone) {
+    @Operation(summary = "Update dog owner")
+    public DogOwner update(@RequestParam @Parameter(description = "Owner telegram ID") Long telegramId,
+                           @RequestParam(required = false) @Parameter(description = "First name") String firstName,
+                           @RequestParam(required = false) @Parameter(description = "Last name") String lastName,
+                           @RequestParam(required = false) @Parameter(description = "Phone number") String phone) {
         return dogOwnerService.update(new DogOwner(telegramId, firstName, lastName, phone,
                 null, null));
     }
 
     @DeleteMapping("id")
-    @Operation(
-            summary = "Удаление владельца собаки по id"
-    )
+    @Operation(summary = "Removing dog owner by ID")
 
-    public String deleteById(@RequestParam @Parameter(description = "Id владельца собаки") Long dogOwnerId) {
+    public String deleteById(@RequestParam @Parameter(description = "Owner ID") Long dogOwnerId) {
         dogOwnerService.deleteById(dogOwnerId);
-        return "Владелец собаки успешно удалён";
+        return "Dog owner successfully removed.";
     }
 }
