@@ -15,13 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("trial-periods")
-@Tag(name = "Испытательный срок", description = "CRUD-методы для работы с испытательными сроками")
+@RequestMapping("adaptation-periods")
+@Tag(name = "Adaptation", description = "CRUD-methods for Adaptation Class")
 @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Всё хорошо, запрос выполнился."),
-        @ApiResponse(responseCode = "400", description = "Есть ошибка в параметрах запроса."),
-        @ApiResponse(responseCode = "404", description = "URL неверный или такого действия нет в веб-приложении."),
-        @ApiResponse(responseCode = "500", description = "Во время выполнения запроса произошла ошибка на сервере.")
+        @ApiResponse(responseCode = "200", description = "Successfully done."),
+        @ApiResponse(responseCode = "400", description = "There is a mistake in params."),
+        @ApiResponse(responseCode = "404", description = "URL is incorrect or there is no such action."),
+        @ApiResponse(responseCode = "500", description = "Mistake occur on server during the process.")
 })
 public class AdaptationController {
 
@@ -32,65 +32,52 @@ public class AdaptationController {
     }
 
     @PostMapping
-    @Operation(
-            summary = "Создать испытательный срок"
-    )
-    public Adaptation create(@RequestParam @Parameter(description = "Дата начала испытательного срока") LocalDate startDate,
-                             @RequestParam @Parameter(description = "Состояние") Adaptation.Result result,
-                             @RequestParam @Parameter(description = "Id хозяина животного") Long ownerId,
-                             @RequestParam @Parameter(description = "Тип взятого животного") Adaptation.AnimalType animalType,
-                             @RequestParam @Parameter(description = "Id животного") Long animalId) {
+    @Operation(summary = "Create adaptation")
+    public Adaptation create(@RequestParam @Parameter(description = "Start date of adaptation") LocalDate startDate,
+                             @RequestParam @Parameter(description = "Adaptation state") Adaptation.Result result,
+                             @RequestParam @Parameter(description = "Owner ID") Long ownerId,
+                             @RequestParam @Parameter(description = "Animal type") Adaptation.AnimalType animalType,
+                             @RequestParam @Parameter(description = "Animal ID") Long animalId) {
         return adaptationService.create(new Adaptation(ownerId, animalId, animalType, startDate, startDate.plusDays(30),
                 startDate.minusDays(1), new ArrayList<>(), result));
     }
 
     @GetMapping()
-    @Operation(
-            summary = "Получение всех испытательных сроков"
-    )
+    @Operation(summary = "Return list with all adaptations")
     public List<Adaptation> getAll() {
         return adaptationService.getAll();
     }
 
     @GetMapping("owner")
-    @Operation(summary = "Получение всех испытательных сроков по id хозяина")
-    public List<Adaptation> getAllByOwnerId(@RequestParam @Parameter(description = "Id хозяина животного") Long ownerId) {
+    @Operation(summary = "Return list with all adaptations by owner ID")
+    public List<Adaptation> getAllByOwnerId(@RequestParam @Parameter(description = "Owner ID") Long ownerId) {
         return adaptationService.getAllByOwnerId(ownerId);
     }
 
     @GetMapping("id")
-    @Operation(
-            summary = "Получение испытательного срока по id"
-    )
-    @Parameter(
-            name = "id",
-            description = "Id ипытательного срока",
-            example = "1"
-    )
+    @Operation(summary = "Return adaptation by ID")
     public Adaptation getById(@RequestParam Long id) {
         return adaptationService.getById(id);
     }
 
     @PutMapping
-    @Operation(
-            summary = "Изменить испытательный срок"
-    )
-    public Adaptation update(@RequestParam @Parameter(description = "Id испытательного срока") Long id,
-                              @RequestParam(required = false) @Parameter(description = "Дата начала испытательного срока") LocalDate startDate,
-                              @RequestParam(required = false) @Parameter(description = "Дата окончания испытательного срока") LocalDate endDate,
-                              @RequestParam(required = false) @Parameter(description = "Дата последнего отчёта") LocalDate lastReportDate,
-                              @RequestParam(required = false) @Parameter(description = "Состояние") Adaptation.Result result,
-                              @RequestParam(required = false) @Parameter(description = "Id хозяина животного") Long ownerId,
-                              @RequestParam(required = false) @Parameter(description = "Тип взятого животного") Adaptation.AnimalType animalType,
-                              @RequestParam(required = false) @Parameter(description = "Id животного") Long animalId) {
+    @Operation(summary = "Update adaptation info")
+    public Adaptation update(@RequestParam @Parameter(description = "Adaptation Id") Long id,
+                              @RequestParam(required = false) @Parameter(description = "Start date of adaptation") LocalDate startDate,
+                              @RequestParam(required = false) @Parameter(description = "End date of adaptation") LocalDate endDate,
+                              @RequestParam(required = false) @Parameter(description = "Date of last report") LocalDate lastReportDate,
+                              @RequestParam(required = false) @Parameter(description = "Adaptation state") Adaptation.Result result,
+                              @RequestParam(required = false) @Parameter(description = "Owner ID") Long ownerId,
+                              @RequestParam(required = false) @Parameter(description = "Animal type") Adaptation.AnimalType animalType,
+                              @RequestParam(required = false) @Parameter(description = "Animal ID") Long animalId) {
         return adaptationService.update(new Adaptation(new ArrayList<>(), id, ownerId, animalId, animalType, startDate, endDate,
                 lastReportDate, result));
     }
 
     @DeleteMapping("id")
-    @Operation(summary = "Удаление испытательного срока по id")
-    public String deleteById(@RequestParam @Parameter(description = "Id испытательного срока") Long id) {
+    @Operation(summary = "Remove adaptation by ID")
+    public String deleteById(@RequestParam @Parameter(description = "Adaptation ID") Long id) {
         adaptationService.deleteById(id);
-        return "Испытательный срок успешно удалён";
+        return "Adaptation removed successfully";
     }
 }

@@ -65,17 +65,13 @@ public class CatSheltersController {
     }
 
     @GetMapping("/id{id}")
-    @Operation(
-            summary = "Return shelter by ID"
-    )
+    @Operation(summary = "Return shelter by ID")
     public CatShelter getShelterId(@PathVariable @Parameter(description = "Shelter ID") long id) {
         return (catShelterService.getShelterById(id));
     }
 
     @DeleteMapping("/{id}")
-    @Operation(
-            summary = "Shelter removed"
-    )
+    @Operation(summary = "Shelter removed")
 
     public String delete(@PathVariable @Parameter(description = "Shelter ID") long id) {
         return catShelterService.delete(id);
