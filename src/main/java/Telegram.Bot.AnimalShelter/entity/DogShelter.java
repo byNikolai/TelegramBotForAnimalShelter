@@ -56,4 +56,14 @@ public class DogShelter {
         this.workingHours = workingHours;
     }
 
+    public DogShelter(List<Dog> list, Long id, String aboutMe, String location, String name, String safety, String security, String workingHours) {
+        this.list = list;
+        this.id = id;
+        this.aboutMe = aboutMe;
+        this.location = location;
+        this.name = name;
+        this.safety = safety;
+        this.security = security;
+        this.workingHours = workingHours;
+    }
 }
