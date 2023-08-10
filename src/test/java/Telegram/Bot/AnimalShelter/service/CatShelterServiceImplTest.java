@@ -28,7 +28,7 @@ import static org.mockito.Mockito.when;
 class CatShelterServiceImplTest {
     @Mock
     private CatShelterRepository catShelterRepository;
-       @InjectMocks
+    @InjectMocks
     private CatShelterServiceImpl catShelterService;
 
     Long ID_1 = 1L;
@@ -56,7 +56,7 @@ class CatShelterServiceImplTest {
 
     /**
      * creatCatShelterTest/ТЕСТ-создание приюта для кошек
-
+     * <p>
      * Проверка на False: Что такого CAT_SHELTER НЕТ
      * Добавление и возвращение CAT_SHELTER_1
      * Проверка, что созданный CAT_SHELTER_1 добавился и вернулся из сервиса
@@ -70,7 +70,7 @@ class CatShelterServiceImplTest {
 
     /**
      * updateCatShelterTest/ ТЕСТ - обновление приюта для кошек
-
+     * <p>
      * Проверка на False: Что такого CAT_SHELTER НЕТ
      * сохранения в catShelterRepository и возвращение CAT_SHELTER_1
      * catShelterRepository находит по идентификатору любой Long.class, возвращается CAT_SHELTER_1
@@ -90,7 +90,7 @@ class CatShelterServiceImplTest {
 
     /**
      * updateCatShelterExceptionTest/ТЕСТ - исключение: Обновление приюта Оля кошек
-
+     * <p>
      * Проверка на False: Что такого CAT_SHELTER НЕТ
      * Добавление и возвращение CAT_SHELTER_1
      * Проверка, что созданный CAT_SHELTER_1 добавился и вернулся из сервиса
@@ -108,7 +108,7 @@ class CatShelterServiceImplTest {
 
     /**
      * getCatShelterByIdTest/ТЕСТ-получение кошачьего приют по Id Test
-
+     * <p>
      * Проверка на False: Что такого CAT_SHELTER НЕТ
      * Добавление и возвращение CAT_SHELTER_1
      * Проверка, что созданный CAT_SHELTER_1 добавился и вернулся из сервиса
@@ -127,7 +127,7 @@ class CatShelterServiceImplTest {
 
     /**
      * getCatShelterByIdExceptionTest/ТЕСТ - исключение: получение кошачьего приют по Id Test
-
+     * <p>
      * Проверка на False: Что такого CAT_SHELTER НЕТ
      * Добавление и возвращение CAT_SHELTER_1
      * Проверка, что созданный CAT_SHELTER_1 добавился и вернулся из сервиса
@@ -150,7 +150,7 @@ class CatShelterServiceImplTest {
 
     /**
      * getCatShelterByNameTest / ТЕСТ - получение приют для кошек по имени
-
+     * <p>
      * Проверка на False: Что такого CAT_SHELTER НЕТ
      * Добавление CAT_SHELTER_1 в catShelterRepository
      * когда catShelterRepository находит по имени NAME_CAT_1, то возвращается CAT_SHELTER_1
@@ -167,7 +167,7 @@ class CatShelterServiceImplTest {
 
     /**
      * getCatShelterByNameExceptionTest / ТЕСТ - исключение: получение приют для кошек по имени
-
+     * <p>
      * Проверка на False: Что такого CAT_SHELTER НЕТ
      * Добавление CAT_SHELTER_1 в catShelterRepository
      * когда catShelterRepository находит по имени NAME_CAT_1, то возвращается CAT_SHELTER_1
@@ -180,9 +180,10 @@ class CatShelterServiceImplTest {
         assertThrows(NotFoundException.class,
                 () -> catShelterService.getShelterByName(NAME_CAT_2));
     }
+
     /**
      * getCatShelterTest / ТЕСТ - получение кошачьего приюта
-
+     * <p>
      * В List<CatShelter> передаем CAT_SHELTER_1
      * когда catShelterRepository.findAll, вернуть кошачьи приют
      * Проверка, получаем catShelters, при поиске получение приюта
@@ -202,14 +203,14 @@ class CatShelterServiceImplTest {
         catList.add(CAT_1);
         catList.add(CAT_2);
 
-    CatShelter CAT_SHELTER1_1 = new CatShelter(catList, 1L,"ABOUT_ME_CAT", "LOCATION", "NAME_CAT_1", "SAFETY", "SECURITY", "WORKING_HOURS");
+        CatShelter CAT_SHELTER1_1 = new CatShelter(catList, 1L, "ABOUT_ME_CAT", "LOCATION", "NAME_CAT_1", "SAFETY", "SECURITY", "WORKING_HOURS");
 
 
-    when(catShelterRepository.findById(CAT_SHELTER1_1.getId())).thenReturn(Optional.of(CAT_SHELTER1_1));
+        when(catShelterRepository.findById(CAT_SHELTER1_1.getId())).thenReturn(Optional.of(CAT_SHELTER1_1));
 
-    List<Cat> catList1 = catShelterService.getAnimal(CAT_SHELTER1_1.getId());
+        List<Cat> catList1 = catShelterService.getAnimal(CAT_SHELTER1_1.getId());
 
-    assertThat(catList1).isEqualTo(catList);
+        assertThat(catList1).isEqualTo(catList);
 
 
     }
