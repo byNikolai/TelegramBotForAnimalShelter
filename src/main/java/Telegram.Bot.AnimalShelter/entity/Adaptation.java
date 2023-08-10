@@ -41,7 +41,6 @@ public class Adaptation {
     private AnimalType animalType;
     @Column
     private LocalDate startDate;
-
     @Column
     private LocalDate endDate;
 
