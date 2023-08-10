@@ -16,15 +16,15 @@ public class User {
     @Id
     @Column
     private Long telegramId;
-    @Column
+    @Column(name = "first_name")
     private String firstName;
-    @Column
+    @Column(name = "last_name")
     private String lastName;
-    @Column
+    @Column(name = "phone_number")
     private String phone;
-    @Column
+    @Column(name = "shelter_type")
     private String shelterType;
-    @Column
+    @Column(name = "shelter_name")
     private String shelterName;
 
     public User(Long telegramId, String firstName, String lastName, String phone) {
