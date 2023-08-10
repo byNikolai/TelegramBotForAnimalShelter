@@ -16,12 +16,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("reports")
-@Tag(name = "Отчёт", description = "CRUD-методы для работы с отчётами")
+@Tag(name = "Report", description = "CRUD-methods for Report Class")
 @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Всё хорошо, запрос выполнился."),
-        @ApiResponse(responseCode = "400", description = "Есть ошибка в параметрах запроса."),
-        @ApiResponse(responseCode = "404", description = "URL неверный или такого действия нет в веб-приложении."),
-        @ApiResponse(responseCode = "500", description = "Во время выполнения запроса произошла ошибка на сервере.")
+        @ApiResponse(responseCode = "200", description = "Successfully done."),
+        @ApiResponse(responseCode = "400", description = "There is a mistake in params."),
+        @ApiResponse(responseCode = "404", description = "URL is incorrect or there is no such action."),
+        @ApiResponse(responseCode = "500", description = "Mistake occur on server during the process.")
 })
 public class ReportController {
 
@@ -34,96 +34,66 @@ public class ReportController {
     }
 
     @PostMapping
-    @Operation(
-            summary = "Создать отчёт"
-    )
-    public Report create(@RequestParam @Parameter(description = "Id фотографии") String photoId,
-                         @RequestParam @Parameter(description = "Рацион животного") String foodRation,
-                         @RequestParam @Parameter(description = "Общее самочувствие и привыкание к новому месту") String generalHealth,
-                         @RequestParam @Parameter(description = "Изменение в поведении") String behaviorChanges,
-                         @RequestParam @Parameter(description = "Id испытательного срока") Long adaptationPeriodId) {
+    @Operation(summary = "Create report")
+    public Report create(@RequestParam @Parameter(description = "Photo ID") String photoId,
+                         @RequestParam @Parameter(description = "Ration") String foodRation,
+                         @RequestParam @Parameter(description = "Overall health") String generalHealth,
+                         @RequestParam @Parameter(description = "Behaviour changes") String behaviorChanges,
+                         @RequestParam @Parameter(description = "Adaptation ID") Long adaptationPeriodId) {
         return reportService.create(new Report(adaptationPeriodId, LocalDate.now(), photoId, foodRation, generalHealth, behaviorChanges));
     }
 
 
     @GetMapping()
-    @Operation(
-            summary = "Получение всех отчётов"
-    )
+    @Operation(summary = "Return list of all reports")
     public List<Report> getAll() {
         return reportService.getAll();
     }
 
-    @GetMapping("trial-id")
-    @Operation(
-            summary = "Получение всех отчётов по id испытательного срока"
-    )
-    public List<Report> getAllByTrialPeriodId(@RequestParam @Parameter(description = "id испытательного срока") Long id) {
+    @GetMapping("adaptation-id")
+    @Operation(summary = "Return all reports by adaptation ID")
+    public List<Report> getAllByAdaptationId(@RequestParam @Parameter(description = "Adaptation ID") Long id) {
         return reportService.getByAdaptationPeriodId(id);
     }
 
-    @GetMapping("date-and-trial")
-    @Operation(
-            summary = "Получение отчёта по дате и id испытательного срока"
-    )
-    @Parameters(value = {
-            @Parameter(
-                    name = "date",
-                    description = "Дата создания отчёта",
-                    example = "2023-12-31"
-            ),
-            @Parameter(
-                    name = "id",
-                    description = "Id испытательного срока",
-                    example = "1"
-            )
-    }
-    )
-    public Report getByDateAndTrialId(@RequestParam @Parameter(description = "Дата получения отчёта") LocalDate date,
-                                      @RequestParam @Parameter(description = "id испытательного срока") Long id) {
+    @GetMapping("date-and-adaptation")
+    @Operation(summary = "Return by date and adaptation ID")
+    public Report getByDateAndAdaptationId(@RequestParam @Parameter(description = "Receive date") LocalDate date,
+                                      @RequestParam @Parameter(description = "Adaptation ID") Long id) {
         return reportService.getByDateAndAdaptationPeriodId(date, id);
     }
 
     @GetMapping("id")
-    @Operation(summary = "Получение отчёта по id")
-    public Report getById(@RequestParam @Parameter(description = "Id испытательного срока") Long reportId) {
+    @Operation(summary = "Return report by ID")
+    public Report getById(@RequestParam @Parameter(description = "Adaptation ID") Long reportId) {
         return reportService.getById(reportId);
     }
 
     @PutMapping
-    @Operation(
-            summary = "Изменить отчёт"
-    )
-    public Report update(@RequestParam @Parameter(description = "Id отчёта") Long id,
-                         @RequestParam(required = false) @Parameter(description = "Id фотографии") String photoId,
-                         @RequestParam(required = false) @Parameter(description = "Рацион животного") String foodRation,
-                         @RequestParam(required = false) @Parameter(description = "Общее самочувствие и привыкание к новому месту") String generalHealth,
-                         @RequestParam(required = false) @Parameter(description = "Изменение в поведении") String behaviorChanges,
-                         @RequestParam(required = false) @Parameter(description = "Дата получения") LocalDate receiveDate,
-                         @RequestParam(required = false) @Parameter(description = "Id испытательного срока") Long adaptationPeriodId) {
-        return reportService.update(new Report(id, adaptationPeriodId, LocalDate.now(), photoId, foodRation, generalHealth, behaviorChanges));
+    @Operation(summary = "Update report")
+    public Report update(@RequestParam @Parameter(description = "Report ID") Long id,
+                         @RequestParam(required = false) @Parameter(description = "Photo ID") String photoId,
+                         @RequestParam(required = false) @Parameter(description = "Ration") String foodRation,
+                         @RequestParam(required = false) @Parameter(description = "Overall health") String generalHealth,
+                         @RequestParam(required = false) @Parameter(description = "Behaviour changes") String behaviorChanges,
+                         @RequestParam(required = false) @Parameter(description = "Receive date") LocalDate receiveDate,
+                         @RequestParam(required = false) @Parameter(description = "Adaptation ID") Long adaptationPeriodId) {
+        return reportService.update(new Report(id, adaptationPeriodId, receiveDate, photoId, foodRation, generalHealth, behaviorChanges));
     }
 
     @DeleteMapping("id")
-    @Operation(
-            summary = "Удаление отчёта по id"
-    )
-    @Parameter(
-            name = "id",
-            description = "Id отчёта",
-            example = "1"
-    )
+    @Operation(summary = "Remove report by ID")
     public String deleteById(@RequestParam Long id) {
         reportService.deleteById(id);
-        return "Отчёт успешно удалён";
+        return "Report removed successfully";
     }
 
     @GetMapping("report-photo")
-    @Operation(summary = "Отправить фото из отчёта волонтёру")
-    public String getReportPhoto(@RequestParam @Parameter(description = "Id отчёта") Long reportId,
-                                 @RequestParam @Parameter(description = "Id волонтёра") Long volunteerId) {
+    @Operation(summary = "Send photo to volunteer")
+    public String getReportPhoto(@RequestParam @Parameter(description = "Report ID") Long reportId,
+                                 @RequestParam @Parameter(description = "Volunteer ID") Long volunteerId) {
         telegramBotUpdatesListener.sendReportPhotoToVolunteer(reportId, volunteerId);
-        return "Фотография успешно отправлена";
+        return "Photo sent successfully";
     }
 }
 

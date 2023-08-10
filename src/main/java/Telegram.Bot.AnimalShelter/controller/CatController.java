@@ -14,66 +14,66 @@ import java.util.List;
 
 @RestController
 @RequestMapping("cats")
-@Tag(name = "Кошки", description = "CRUD-методы для работы с кошками")
+@Tag(name = "Cats", description = "CRUD-method for Cat class")
 @RequiredArgsConstructor
 @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Всё хорошо, запрос выполнился."),
-        @ApiResponse(responseCode = "400", description = "Есть ошибка в параметрах запроса."),
-        @ApiResponse(responseCode = "404", description = "URL неверный или такого действия нет в веб-приложении."),
-        @ApiResponse(responseCode = "500", description = "Во время выполнения запроса произошла ошибка на сервере.")
+        @ApiResponse(responseCode = "200", description = "Successfully done."),
+        @ApiResponse(responseCode = "400", description = "There is a mistake in params."),
+        @ApiResponse(responseCode = "404", description = "URL is incorrect or there is no such action."),
+        @ApiResponse(responseCode = "500", description = "Mistake occur on server during the process.")
 })
 public class CatController {
 
     private final CatService catService;
 
     @GetMapping("/id")
-    @Operation(summary = "Получение кота по ID")
-    public Cat getById(@RequestParam @Parameter(description = "ID кота") Long id) {
+    @Operation(summary = "Return cat by ID")
+    public Cat getById(@RequestParam @Parameter(description = "Cat ID") Long id) {
         return catService.getById(id);
     }
 
     @PostMapping
-    @Operation(summary = "Добавить кота в приют")
+    @Operation(summary = "Add a cat to the shelter")
     public Cat create(
-            @RequestParam @Parameter(description = "Имя кота") String name,
-            @RequestParam @Parameter(description = "Возраст") int age,
-            @RequestParam @Parameter(description = "Здоров?") boolean isHealthy,
-            @RequestParam @Parameter(description = "Привит?") boolean vaccinated,
-            @RequestParam @Parameter(description = "ID приюта") Long shelterId) {
+            @RequestParam @Parameter(description = "Cat name") String name,
+            @RequestParam @Parameter(description = "age") int age,
+            @RequestParam @Parameter(description = "Healthy") boolean isHealthy,
+            @RequestParam @Parameter(description = "Vaccinated") boolean vaccinated,
+            @RequestParam @Parameter(description = "Shelter ID") Long shelterId) {
         return catService.create(new Cat(name, age, isHealthy, vaccinated, shelterId));
     }
 
     @GetMapping()
-    @Operation(summary = "Получение всех котов")
+    @Operation(summary = "Return all cats")
     public List<Cat> getAll() {
         return catService.getAll();
     }
 
-    @GetMapping("/ownerID")
-    @Operation(summary = "Получение списка котов по ID хозяина")
-    public List<Cat> getOwnerById(@RequestParam @Parameter(description = "ID хозяина") Long id) {
+    @GetMapping("/ownerId")
+    @Operation(summary = "Return list of cats by owner ID")
+    public List<Cat> getOwnerById(@RequestParam @Parameter(description = "Owner ID") Long id) {
         return catService.getAllByOwnerId(id);
     }
 
 
     @PutMapping
-    @Operation(summary = "Изменить информацию о коте")
+    @Operation(summary = "Update the cat's info")
     public Cat update(
-            @RequestParam @Parameter(description = "ID кота") Long id,
-            @RequestParam(required = false) @Parameter(description = "Имя кота") String name,
-            @RequestParam(required = false) @Parameter(description = "Возраст кота") Integer age,
-            @RequestParam(required = false) @Parameter(description = "Здоров?") Boolean isHealthy,
-            @RequestParam(required = false) @Parameter(description = "Привит?") Boolean vaccinated,
-            @RequestParam(required = false) @Parameter(description = "ID кошачьего приюта") Long shelterId,
-            @RequestParam(required = false) @Parameter(description = "ID хозяина") Long ownerId) {
+            @RequestParam @Parameter(description = "Cat ID") Long id,
+            @RequestParam(required = false) @Parameter(description = "Cat name") String name,
+            @RequestParam(required = false) @Parameter(description = "age") Integer age,
+            @RequestParam(required = false) @Parameter(description = "Healthy") Boolean isHealthy,
+            @RequestParam(required = false) @Parameter(description = "Vaccinated") Boolean vaccinated,
+            @RequestParam(required = false) @Parameter(description = "Shelter ID") Long shelterId,
+            @RequestParam(required = false) @Parameter(description = "Owner ID") Long ownerId) {
         return catService.update(new Cat(id, name, age, isHealthy, vaccinated, shelterId, ownerId));
     }
 
     @DeleteMapping("/id")
-    @Operation(summary = "Удаление кота")
+    @Operation(summary = "Remove cat from its list")
     public String deleteById(@RequestParam Long id) {
         catService.delete(id);
-        return "Кота выбросили на улицу";
+        return "Cat removed from list";
     }
 
 }
