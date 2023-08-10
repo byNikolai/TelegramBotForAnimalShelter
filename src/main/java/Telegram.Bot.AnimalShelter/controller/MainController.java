@@ -6,12 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Tag(name = "Главная")
+@Tag(name = "Main")
 public class MainController {
     @GetMapping("/")
-    @Operation(
-            summary = "Главная страница приложения"
-    )
+    @Operation(summary = "Main page")
     public String mainPage() {
         return "Home";
     }

@@ -15,12 +15,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("volunteers")
-@Tag(name = "Волонтёр", description = "CRUD-методы для работы с волонтёрами")
+@Tag(name = "Volunteer", description = "CRUD-methods for Volunteer Class")
 @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Всё хорошо, запрос выполнился."),
-        @ApiResponse(responseCode = "400", description = "Есть ошибка в параметрах запроса."),
-        @ApiResponse(responseCode = "404", description = "URL неверный или такого действия нет в веб-приложении."),
-        @ApiResponse(responseCode = "500", description = "Во время выполнения запроса произошла ошибка на сервере.")
+        @ApiResponse(responseCode = "200", description = "Successfully done."),
+        @ApiResponse(responseCode = "400", description = "There is a mistake in params."),
+        @ApiResponse(responseCode = "404", description = "URL is incorrect or there is no such action."),
+        @ApiResponse(responseCode = "500", description = "Mistake occur on server during the process.")
 })
 public class VolunteerController {
     private final VolunteerService volunteerService;
@@ -33,47 +33,47 @@ public class VolunteerController {
     }
 
     @PostMapping
-    @Operation(summary = "Создать волонтёра")
-    public Volunteer create(@RequestParam @Parameter(description = "Телеграм id волонтёра") Long telegramId,
-                            @RequestParam @Parameter(description = "Имя") String firstName,
-                            @RequestParam @Parameter(description = "Фамилия") String lastName) {
+    @Operation(summary = "Create volunteer")
+    public Volunteer create(@RequestParam @Parameter(description = "Volunteer telegram ID") Long telegramId,
+                            @RequestParam @Parameter(description = "Volunteer name") String firstName,
+                            @RequestParam @Parameter(description = "Volunteer last name") String lastName) {
         return volunteerService.create(new Volunteer(telegramId, firstName, lastName));
     }
 
     @GetMapping()
-    @Operation(summary = "Получение всех волонтёров")
+    @Operation(summary = "Return list of all volunteer")
     public List<Volunteer> getAll() {
         return volunteerService.getAll();
     }
 
     @GetMapping("id")
-    @Operation(summary = "Получение волонтёра по id")
-    public Volunteer getById(@RequestParam @Parameter(description = "Id волонтёра") Long volunteerId) {
+    @Operation(summary = "Return volunteer by ID")
+    public Volunteer getById(@RequestParam @Parameter(description = "volunteer ID") Long volunteerId) {
         return volunteerService.getById(volunteerId);
     }
 
     @PutMapping
-    @Operation(summary = "Изменить волонтёра")
-    public Volunteer update(@RequestParam @Parameter(description = "Телеграм id волонтёра") Long telegramId,
-                            @RequestParam(required = false) @Parameter(description = "Имя") String firstName,
-                            @RequestParam(required = false) @Parameter(description = "Фамилия") String lastName) {
+    @Operation(summary = "Update volunteer")
+    public Volunteer update(@RequestParam @Parameter(description = "Volunteer telegram ID") Long telegramId,
+                            @RequestParam(required = false) @Parameter(description = "Volunteer name") String firstName,
+                            @RequestParam(required = false) @Parameter(description = "Volunteer last name") String lastName) {
         return volunteerService.update(new Volunteer(telegramId, firstName, lastName));
     }
 
     @DeleteMapping("id")
-    @Operation(summary = "Удаление волонтёра по id")
-    public String deleteById(@RequestParam @Parameter(description = "Id волонтёра") Long volunteerId) {
+    @Operation(summary = "Remove volunteer by ID")
+    public String deleteById(@RequestParam @Parameter(description = "volunteer ID") Long volunteerId) {
         volunteerService.deleteById(volunteerId);
-        return "Волонтёр успешно удалён";
+        return "Volunteer removed successfully";
     }
 
-    @Tag(name = "Сообщения пользователю")
+    @Tag(name = "User message")
     @PostMapping("warning-message")
-    @Operation(summary = "Отправить хозяину предупреждение о правильности отчётов")
-    public String sendWarning(@RequestParam @Parameter(description = "Id хозяина") Long ownerId) {
+    @Operation(summary = "Send a warning")
+    public String sendWarning(@RequestParam @Parameter(description = "Owner ID") Long ownerId) {
         telegramBot.execute(new SendMessage(ownerId,
-                "Дорогой усыновитель, мы заметили, что ты заполняешь отчет не так подробно, как необходимо. Пожалуйста, подойди ответственнее к этому занятию. В противном случае волонтеры приюта будут обязаны самолично проверять условия содержания животного"));
-        return "Сообщение успешно отправлено";
+                "Hi, we noticed, that you are not doing a good job with reports. Please, send correct reports or we will be obliged to check on you offline."));
+        return "Message sent successfully";
     }
 }
 

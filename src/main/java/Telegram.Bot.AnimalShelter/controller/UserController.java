@@ -13,12 +13,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("users")
-@Tag(name = "Пользователь", description = "CRUD-методы для работы с пользователями")
+@Tag(name = "User", description = "CRUD-methods for User Class")
 @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Всё хорошо, запрос выполнился."),
-        @ApiResponse(responseCode = "400", description = "Есть ошибка в параметрах запроса."),
-        @ApiResponse(responseCode = "404", description = "URL неверный или такого действия нет в веб-приложении."),
-        @ApiResponse(responseCode = "500", description = "Во время выполнения запроса произошла ошибка на сервере.")
+        @ApiResponse(responseCode = "200", description = "Successfully done."),
+        @ApiResponse(responseCode = "400", description = "There is a mistake in params."),
+        @ApiResponse(responseCode = "404", description = "URL is incorrect or there is no such action."),
+        @ApiResponse(responseCode = "500", description = "Mistake occur on server during the process.")
 })
 public class UserController {
     private final UserService userService;
@@ -28,39 +28,39 @@ public class UserController {
     }
 
     @PostMapping
-    @Operation(summary = "Создать пользователя")
-    public User create(@RequestParam @Parameter(description = "Телеграм id пользователя") Long telegramId,
-                       @RequestParam @Parameter(description = "Имя") String firstName,
-                       @RequestParam @Parameter(description = "Фамилия") String lastName,
-                       @RequestParam @Parameter(description = "Телефон") String phone) {
+    @Operation(summary = "Create user")
+    public User create(@RequestParam @Parameter(description = "User telegram ID") Long telegramId,
+                       @RequestParam @Parameter(description = "First Name") String firstName,
+                       @RequestParam @Parameter(description = "Last Name") String lastName,
+                       @RequestParam @Parameter(description = "Phone number") String phone) {
         return userService.create(new User(telegramId, firstName, lastName, phone));
     }
 
     @GetMapping()
-    @Operation(summary = "Получение списка всех пользователей")
+    @Operation(summary = "Return list of all users")
     public List<User> getAll() {
         return userService.getAll();
     }
 
     @GetMapping("id")
-    @Operation(summary = "Получение пользователя по id")
-    public User getById(@RequestParam @Parameter(description = "Id пользователя") Long userId) {
+    @Operation(summary = "Return user by ID")
+    public User getById(@RequestParam @Parameter(description = "User ID") Long userId) {
         return userService.getById(userId);
     }
 
     @PutMapping
-    @Operation(summary = "Изменить пользователя")
-    public User update(@RequestParam @Parameter(description = "Телеграм id пользователя") Long telegramId,
-                       @RequestParam(required = false) @Parameter(description = "Имя") String firstName,
-                       @RequestParam(required = false) @Parameter(description = "Фамилия") String lastName,
-                       @RequestParam(required = false) @Parameter(description = "Телефон") String phone) {
+    @Operation(summary = "Update user")
+    public User update(@RequestParam @Parameter(description = "User telegram ID") Long telegramId,
+                       @RequestParam(required = false) @Parameter(description = "First Name") String firstName,
+                       @RequestParam(required = false) @Parameter(description = "Last Name") String lastName,
+                       @RequestParam(required = false) @Parameter(description = "Phone number") String phone) {
         return userService.update(new User(telegramId, firstName, lastName, phone));
     }
 
     @DeleteMapping("id")
-    @Operation(summary = "Удаление пользователя по id")
-    public String deleteById(@RequestParam @Parameter(description = "Id пользователя") Long userId) {
+    @Operation(summary = "Remove user")
+    public String deleteById(@RequestParam @Parameter(description = "Uer ID") Long userId) {
         userService.deleteById(userId);
-        return "Пользователь успешно удалён";
+        return "User removed successfully";
     }
 }

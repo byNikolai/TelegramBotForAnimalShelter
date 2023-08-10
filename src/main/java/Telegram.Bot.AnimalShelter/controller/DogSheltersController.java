@@ -58,25 +58,19 @@ public class DogSheltersController {
     }
 
     @GetMapping("/list{id}")
-    @Operation(
-            summary = "List of animals"
-    )
+    @Operation(summary = "List of animals")
     public List<Dog> getAnimal(@PathVariable @Parameter(description = "Shelter ID") long id) {
         return dogShelterService.getAnimal(id);
     }
 
     @GetMapping("/id{id}")
-    @Operation(
-            summary = "Return shelter by ID"
-    )
+    @Operation(summary = "Return shelter by ID")
     public DogShelter getShelterId(@PathVariable @Parameter(description = "Shelter ID") long id) {
         return (dogShelterService.getShelterById(id));
     }
 
     @DeleteMapping("/{id}")
-    @Operation(
-            summary = "Shelter removed"
-    )
+    @Operation(summary = "Shelter removed")
 
     public String delete(@PathVariable @Parameter(description = "Shelter ID") long id) {
         return dogShelterService.delete(id);
