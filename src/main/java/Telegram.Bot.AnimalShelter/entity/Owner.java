@@ -43,6 +43,6 @@ public class Owner {
         this.setTelegramId(user.getTelegramId());
         this.setFirstName(user.getFirstName());
         this.setLastName(user.getLastName());
-        this.setPhoneNumber(user.getPhone());
+        this.setPhoneNumber(user.getPhoneNumber());
     }
 }

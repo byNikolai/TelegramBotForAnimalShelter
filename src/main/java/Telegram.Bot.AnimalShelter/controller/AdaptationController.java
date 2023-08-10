@@ -65,13 +65,13 @@ public class AdaptationController {
     public Adaptation update(@RequestParam @Parameter(description = "Adaptation Id") Long id,
                               @RequestParam(required = false) @Parameter(description = "Start date of adaptation") LocalDate startDate,
                               @RequestParam(required = false) @Parameter(description = "End date of adaptation") LocalDate endDate,
-                              @RequestParam(required = false) @Parameter(description = "Date of last report") LocalDate lastReportDate,
+                              @RequestParam(required = false) @Parameter(description = "Date of last report") LocalDate dateOfLastReport,
                               @RequestParam(required = false) @Parameter(description = "Adaptation state") Adaptation.Result result,
                               @RequestParam(required = false) @Parameter(description = "Owner ID") Long ownerId,
                               @RequestParam(required = false) @Parameter(description = "Animal type") Adaptation.AnimalType animalType,
                               @RequestParam(required = false) @Parameter(description = "Animal ID") Long animalId) {
         return adaptationService.update(new Adaptation(new ArrayList<>(), id, ownerId, animalId, animalType, startDate, endDate,
-                lastReportDate, result));
+                dateOfLastReport, result));
     }
 
     @DeleteMapping("id")

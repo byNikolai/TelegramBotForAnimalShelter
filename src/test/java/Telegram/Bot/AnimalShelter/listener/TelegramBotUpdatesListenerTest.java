@@ -37,7 +37,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
@@ -217,11 +216,11 @@ class TelegramBotUpdatesListenerTest {
         when(userService.getById(any())).thenReturn(catUser);
         SendMessage actual = getSendMessage(update);
         Assertions.assertEquals(update.message().chat().id(), actual.getParameters().get("chat_id"));
-        Assertions.assertEquals(Constants.RECOMMENDATIONS_HOME_ARRANGEMENT_ADULT_ANIMAL, actual.getParameters().get("text"));
+        Assertions.assertEquals(Constants.RECOMMENDATIONS_HOME_SETUP_ADULT_ANIMAL, actual.getParameters().get("text"));
         update = BotUtils.fromJson(messageTextJson.replace("%text%", "Setup for cat with disabilities"), Update.class);
         actual = getSendMessage(update);
         Assertions.assertEquals(update.message().chat().id(), actual.getParameters().get("chat_id"));
-        Assertions.assertEquals(Constants.RECOMMENDATIONS_HOME_ARRANGEMENT_ADULT_ANIMAL, actual.getParameters().get("text"));
+        Assertions.assertEquals(Constants.RECOMMENDATIONS_HOME_SETUP_ADULT_ANIMAL, actual.getParameters().get("text"));
     }
     @Test
     void handleImprovementForAdultAnimalCommands() {
@@ -229,11 +228,11 @@ class TelegramBotUpdatesListenerTest {
         when(userService.getById(any())).thenReturn(catUser);
         SendMessage actual = getSendMessage(update);
         Assertions.assertEquals(update.message().chat().id(), actual.getParameters().get("chat_id"));
-        Assertions.assertEquals(Constants.RECOMMENDATIONS_HOME_ARRANGEMENT_ADULT_ANIMAL, actual.getParameters().get("text"));
+        Assertions.assertEquals(Constants.RECOMMENDATIONS_HOME_SETUP_ADULT_ANIMAL, actual.getParameters().get("text"));
         update = BotUtils.fromJson(messageTextJson.replace("%text%", "Setup for adult cat"), Update.class);
         actual = getSendMessage(update);
         Assertions.assertEquals(update.message().chat().id(), actual.getParameters().get("chat_id"));
-        Assertions.assertEquals(Constants.RECOMMENDATIONS_HOME_ARRANGEMENT_ADULT_ANIMAL, actual.getParameters().get("text"));
+        Assertions.assertEquals(Constants.RECOMMENDATIONS_HOME_SETUP_ADULT_ANIMAL, actual.getParameters().get("text"));
     }
     @Test
     void handleImprovementForLittleAnimalCommands() {
@@ -241,11 +240,11 @@ class TelegramBotUpdatesListenerTest {
         when(userService.getById(any())).thenReturn(catUser);
         SendMessage actual = getSendMessage(update);
         Assertions.assertEquals(update.message().chat().id(), actual.getParameters().get("chat_id"));
-        Assertions.assertEquals(Constants.RECOMMENDATIONS_HOME_ARRANGEMENT_KITTEN_PUPPY, actual.getParameters().get("text"));
+        Assertions.assertEquals(Constants.RECOMMENDATIONS_HOME_SETUP_KITTEN_PUPPY, actual.getParameters().get("text"));
         update = BotUtils.fromJson(messageTextJson.replace("%text%", "Setup for kitten"), Update.class);
         actual = getSendMessage(update);
         Assertions.assertEquals(update.message().chat().id(), actual.getParameters().get("chat_id"));
-        Assertions.assertEquals(Constants.RECOMMENDATIONS_HOME_ARRANGEMENT_KITTEN_PUPPY, actual.getParameters().get("text"));
+        Assertions.assertEquals(Constants.RECOMMENDATIONS_HOME_SETUP_KITTEN_PUPPY, actual.getParameters().get("text"));
     }
     @Test
     void handleRecommendationsForAnimalCommands() {

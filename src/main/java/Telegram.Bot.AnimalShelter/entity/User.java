@@ -16,21 +16,21 @@ public class User {
     @Id
     @Column
     private Long telegramId;
-    @Column(name = "first_name")
+    @Column
     private String firstName;
-    @Column(name = "last_name")
+    @Column
     private String lastName;
-    @Column(name = "phone_number")
-    private String phone;
-    @Column(name = "shelter_type")
+    @Column
+    private String phoneNumber;
+    @Column
     private String shelterType;
-    @Column(name = "shelter_name")
+    @Column
     private String shelterName;
 
     public User(Long telegramId, String firstName, String lastName, String phone) {
         this.telegramId = telegramId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.phone = phone;
+        this.phoneNumber = phone;
     }
 }

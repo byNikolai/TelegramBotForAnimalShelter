@@ -37,10 +37,10 @@ public class ReportController {
     @Operation(summary = "Create report")
     public Report create(@RequestParam @Parameter(description = "Photo ID") String photoId,
                          @RequestParam @Parameter(description = "Ration") String foodRation,
-                         @RequestParam @Parameter(description = "Overall health") String generalHealth,
-                         @RequestParam @Parameter(description = "Behaviour changes") String behaviorChanges,
+                         @RequestParam @Parameter(description = "Overall health") String animalHealth,
+                         @RequestParam @Parameter(description = "Behaviour changes") String animalBehavior,
                          @RequestParam @Parameter(description = "Adaptation ID") Long adaptationPeriodId) {
-        return reportService.create(new Report(adaptationPeriodId, LocalDate.now(), photoId, foodRation, generalHealth, behaviorChanges));
+        return reportService.create(new Report(adaptationPeriodId, LocalDate.now(), photoId, foodRation, animalHealth, animalBehavior));
     }
 
 
@@ -52,13 +52,13 @@ public class ReportController {
 
     @GetMapping("adaptation-id")
     @Operation(summary = "Return all reports by adaptation ID")
-    public List<Report> getAllByAdaptationId(@RequestParam @Parameter(description = "Adaptation ID") Long id) {
+    public List<Report> getByAdaptationPeriodId(@RequestParam @Parameter(description = "Adaptation ID") Long id) {
         return reportService.getByAdaptationPeriodId(id);
     }
 
     @GetMapping("date-and-adaptation")
     @Operation(summary = "Return by date and adaptation ID")
-    public Report getByDateAndAdaptationId(@RequestParam @Parameter(description = "Receive date") LocalDate date,
+    public Report getByDateAndAdaptationPeriodId(@RequestParam @Parameter(description = "Receive date") LocalDate date,
                                       @RequestParam @Parameter(description = "Adaptation ID") Long id) {
         return reportService.getByDateAndAdaptationPeriodId(date, id);
     }
@@ -74,11 +74,11 @@ public class ReportController {
     public Report update(@RequestParam @Parameter(description = "Report ID") Long id,
                          @RequestParam(required = false) @Parameter(description = "Photo ID") String photoId,
                          @RequestParam(required = false) @Parameter(description = "Ration") String foodRation,
-                         @RequestParam(required = false) @Parameter(description = "Overall health") String generalHealth,
-                         @RequestParam(required = false) @Parameter(description = "Behaviour changes") String behaviorChanges,
+                         @RequestParam(required = false) @Parameter(description = "Overall health") String animalHealth,
+                         @RequestParam(required = false) @Parameter(description = "Behaviour changes") String animalBehavior,
                          @RequestParam(required = false) @Parameter(description = "Receive date") LocalDate receiveDate,
                          @RequestParam(required = false) @Parameter(description = "Adaptation ID") Long adaptationPeriodId) {
-        return reportService.update(new Report(id, adaptationPeriodId, receiveDate, photoId, foodRation, generalHealth, behaviorChanges));
+        return reportService.update(new Report(id, adaptationPeriodId, receiveDate, photoId, foodRation, animalHealth, animalBehavior));
     }
 
     @DeleteMapping("id")
