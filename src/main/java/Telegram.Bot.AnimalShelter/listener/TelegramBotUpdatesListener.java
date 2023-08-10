@@ -443,12 +443,12 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
     @Scheduled(cron = "@daily")
     private void sendAdaptationStatus() {
         for (User user : userService.getAll()) {
-            for (Adaptation trialPeriod : adaptationService.getAllByOwnerId(user.getTelegramId())) {
-                if (trialPeriod.getResult().equals(Adaptation.Result.UNSUCCESSFUL)) {
-                    sendMessage(user.getTelegramId(), Constants.TRIAL_NOT_SUCCESSFUL);
-                } else if (trialPeriod.getResult().equals(Adaptation.Result.EXTENDED)) {
-                    sendMessage(user.getTelegramId(), Constants.TRIAL_EXTENDED);
-                } else if (trialPeriod.getResult().equals(Adaptation.Result.SUCCESSFUL)) {
+            for (Adaptation adaptation : adaptationService.getAllByOwnerId(user.getTelegramId())) {
+                if (adaptation.getResult().equals(Adaptation.Result.UNSUCCESSFUL)) {
+                    sendMessage(user.getTelegramId(), Constants.ADAPTATION_NOT_SUCCESSFUL);
+                } else if (adaptation.getResult().equals(Adaptation.Result.EXTENDED)) {
+                    sendMessage(user.getTelegramId(), Constants.ADAPTATION_EXTENDED);
+                } else if (adaptation.getResult().equals(Adaptation.Result.SUCCESSFUL)) {
                     sendMessage(user.getTelegramId(), Constants.SUCCESSFUL);
                 }
             }

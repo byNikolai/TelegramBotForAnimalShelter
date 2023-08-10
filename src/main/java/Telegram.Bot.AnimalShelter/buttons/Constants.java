@@ -147,7 +147,7 @@ public class Constants {
     public static final String FAQ = "FAQ";
 
 
-    public static final String SUCCESSFUL = "сюда нужно много текста";
-    public static final String TRIAL_NOT_SUCCESSFUL = "сюда нужно много текста";
-    public static final String TRIAL_EXTENDED = "сюда нужно много текста";
+    public static final String SUCCESSFUL = "You have successfully finished adaptation period! Congratulations!";
+    public static final String ADAPTATION_NOT_SUCCESSFUL = "You have not followed the rules. We obliged to take animal back. If you need help with animal transportation, our staff is ready to provide it.";
+    public static final String ADAPTATION_EXTENDED = "Your adaptation period is extended. If you hear about this fact for the first time, please, contact a volunteer for more information.";
 }

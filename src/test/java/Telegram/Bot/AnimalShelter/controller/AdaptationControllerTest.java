@@ -39,31 +39,31 @@ class AdaptationControllerTest {
 
     private final List<Adaptation> AdaptationList = List.of(adaptation1, adaptation2);
 
-//    @Test
-//    void shouldCreateAndReturnAdaptation() throws Exception {
-//        when(adaptationService.create(any(Adaptation.class))).thenReturn(adaptation1);
-//        mockMvc.perform(post("/adaptation-periods")
-//                        .param("startDate", String.valueOf(LocalDate.now()))
-//                        .param("result", String.valueOf(Adaptation.Result.IN_PROGRESS))
-//                        .param("ownerId", String.valueOf(1L))
-//                        .param("animalType", String.valueOf(Adaptation.AnimalType.CAT))
-//                        .param("animalId", String.valueOf(1L))
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("reports").value(new ArrayList<>()))
-//                .andExpect(jsonPath("id").value(1L))
-//                .andExpect(jsonPath("ownerId").value(1L))
-//                .andExpect(jsonPath("animalId").value(1L))
-//                .andExpect(jsonPath("animalType").value(String.valueOf(Adaptation.AnimalType.CAT)))
-//                .andExpect(jsonPath("startDate").value(String.valueOf(LocalDate.now())))
-//                .andExpect(jsonPath("endDate").value(String.valueOf(LocalDate.now().plusDays(30))))
-//                .andExpect(jsonPath("dateOfLastReport").value(String.valueOf(LocalDate.now().minusDays(1))))
-//                .andExpect(jsonPath("result").value(String.valueOf(Adaptation.Result.IN_PROGRESS)))
-//
-//        ;
-//
-//        verify(adaptationService, times(1)).create(any(Adaptation.class));
-//    }
+    @Test
+    void shouldCreateAndReturnAdaptation() throws Exception {
+        when(adaptationService.create(any(Adaptation.class))).thenReturn(adaptation1);
+        mockMvc.perform(post("/adaptation-periods")
+                        .param("startDate", String.valueOf(LocalDate.now()))
+                        .param("result", String.valueOf(Adaptation.Result.IN_PROGRESS))
+                        .param("ownerId", String.valueOf(1L))
+                        .param("animalType", String.valueOf(Adaptation.AnimalType.CAT))
+                        .param("animalId", String.valueOf(1L))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("reports").value(new ArrayList<>()))
+                .andExpect(jsonPath("id").value(1L))
+                .andExpect(jsonPath("ownerId").value(1L))
+                .andExpect(jsonPath("animalId").value(1L))
+                .andExpect(jsonPath("animalType").value(String.valueOf(Adaptation.AnimalType.CAT)))
+                .andExpect(jsonPath("startDate").value(String.valueOf(LocalDate.now())))
+                .andExpect(jsonPath("endDate").value(String.valueOf(LocalDate.now().plusDays(30))))
+                .andExpect(jsonPath("dateOfLastReport").value(String.valueOf(LocalDate.now().minusDays(1))))
+                .andExpect(jsonPath("result").value(String.valueOf(Adaptation.Result.IN_PROGRESS)))
+
+        ;
+
+        verify(adaptationService, times(1)).create(any(Adaptation.class));
+    }
 
     @Test
     void shouldReturnListOfAllAdaptations() throws Exception {
@@ -156,10 +156,10 @@ class AdaptationControllerTest {
                 .andExpect(jsonPath("startDate").value(String.valueOf(LocalDate.now())))
                 .andExpect(jsonPath("endDate").value(String.valueOf(LocalDate.now().plusDays(30))))
                 .andExpect(jsonPath("dateOfLastReport").value(String.valueOf(LocalDate.now().minusDays(1))))
-                .andExpect(jsonPath("result").value(String.valueOf(Adaptation.Result.IN_PROGRESS)))
+                .andExpect(jsonPath("result").value(String.valueOf(Adaptation.Result.IN_PROGRESS)));
+        verify(adaptationService, times(1)).update(any(Adaptation.class))
 
         ;
-        verify(adaptationService, times(1)).update(any(Adaptation.class));
     }
 
     @Test
