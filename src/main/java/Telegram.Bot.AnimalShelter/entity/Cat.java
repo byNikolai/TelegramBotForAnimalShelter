@@ -24,10 +24,10 @@ public class Cat {
     private Integer age;
 
     @Column
-    private boolean healthy;
+    private Boolean healthy;
 
     @Column
-    private boolean vaccinated;
+    private Boolean vaccinated;
 
     @Column
     private Long ownerId;
