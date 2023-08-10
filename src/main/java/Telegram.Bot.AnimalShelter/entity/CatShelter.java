@@ -11,12 +11,13 @@ import java.util.List;
 @Data
 @Table(name = "cat_shelter")
 public class CatShelter {
+
     @OneToMany(mappedBy = "shelterId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Cat> list;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
     private String aboutMe;
 
@@ -34,17 +35,6 @@ public class CatShelter {
 
     @Column
     private String workingHours;
-
-    public CatShelter(List<Cat> list, Long id, String aboutMe, String location, String name, String safety, String security, String workingHours) {
-        this.list = list;
-        this.id = id;
-        this.aboutMe = aboutMe;
-        this.location = location;
-        this.name = name;
-        this.safety = safety;
-        this.security = security;
-        this.workingHours = workingHours;
-    }
 
     public CatShelter(String aboutMe, String location, String name, String safety, String security, String workingHours) {
         this.aboutMe = aboutMe;

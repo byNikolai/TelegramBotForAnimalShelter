@@ -59,10 +59,10 @@ public class CatOwnerServiceImpl implements CatOwnerService {
                         LocalDate.now().plusDays(30),
                         LocalDate.now().minusDays(1),
                         new ArrayList<>(),
-                        Adaptation.Result.IN_PROGRESS),
+                        Adaptation.Result.IN_PROGRESS
+                ),
                 animalType);
         return catOwnerRepository.save(catOwner);
-
     }
 
     @Override

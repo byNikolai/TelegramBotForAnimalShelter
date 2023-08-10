@@ -19,7 +19,7 @@ public class AdaptationServiceImpl implements AdaptationService {
 
     private final AdaptationRepository adaptationRepository;
     private final CatService catService;
-    private DogService dogService;
+    private final DogService dogService;
 
 
     @Override
