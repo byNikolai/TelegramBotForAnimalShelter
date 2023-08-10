@@ -358,7 +358,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
         Matcher matcher = pattern.matcher(text);
         if (matcher.find()) {
             User byId = userService.getById(chatId);
-            byId.setPhone(matcher.group(1));
+            byId.setPhoneNumber(matcher.group(1));
             userService.update(byId);
             sendMessage(chatId, "Phone number accepted");
         } else {

@@ -21,7 +21,7 @@ public class User {
     @Column
     private String lastName;
     @Column
-    private String phone;
+    private String phoneNumber;
     @Column
     private String shelterType;
     @Column
@@ -31,6 +31,6 @@ public class User {
         this.telegramId = telegramId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.phone = phone;
+        this.phoneNumber = phone;
     }
 }

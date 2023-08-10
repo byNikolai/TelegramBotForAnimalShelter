@@ -8,7 +8,8 @@ create table users
     first_name   varchar(200),
     last_name    varchar(200),
     phone_number varchar(200),
-    shelter_type varchar(200)
+    shelter_type varchar(200),
+    shelter_name varchar(200)
 );
 
 create table owners
