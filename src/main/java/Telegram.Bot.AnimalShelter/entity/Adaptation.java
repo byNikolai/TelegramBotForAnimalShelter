@@ -10,7 +10,6 @@ import java.util.List;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "adaptation_period")
 public class Adaptation {
@@ -59,6 +58,18 @@ public class Adaptation {
         this.endDate = endDate;
         this.dateOfLastReport = dateOfLastReport;
         this.reports = reports;
+        this.result = result;
+    }
+
+    public Adaptation(List<Report> reports, Long id, Long ownerId, Long animalId, AnimalType animalType, LocalDate startDate, LocalDate endDate, LocalDate dateOfLastReport, Result result) {
+        this.reports = reports;
+        this.id = id;
+        this.ownerId = ownerId;
+        this.animalId = animalId;
+        this.animalType = animalType;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.dateOfLastReport = dateOfLastReport;
         this.result = result;
     }
 }

@@ -271,37 +271,37 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                             }
                             case Constants.PUPPY_SETUP: {
                                 logger.info("Обустройство щенка - ID:{}", chatId);
-                                sendMessage(chatId, Constants.RECOMMENDATIONS_HOME_ARRANGEMENT_KITTEN_PUPPY);
+                                sendMessage(chatId, Constants.RECOMMENDATIONS_HOME_SETUP_KITTEN_PUPPY);
                                 break;
                             }
                             case Constants.KITTEN_SETUP: {
                                 logger.info("Обустройство котенка - ID:{}", chatId);
-                                sendMessage(chatId, Constants.RECOMMENDATIONS_HOME_ARRANGEMENT_KITTEN_PUPPY);
+                                sendMessage(chatId, Constants.RECOMMENDATIONS_HOME_SETUP_KITTEN_PUPPY);
                                 break;
                             }
                             case Constants.ADULT_CAT_SETUP: {
                                 logger.info("Обустройство взрослой кошки - ID:{}", chatId);
-                                sendMessage(chatId, Constants.RECOMMENDATIONS_HOME_ARRANGEMENT_ADULT_ANIMAL);
+                                sendMessage(chatId, Constants.RECOMMENDATIONS_HOME_SETUP_ADULT_ANIMAL);
                                 break;
                             }
                             case Constants.ADULT_DOG_SETUP: {
                                 logger.info("Обустройство взрослой собаки - ID:{}", chatId);
-                                sendMessage(chatId, Constants.RECOMMENDATIONS_HOME_ARRANGEMENT_ADULT_ANIMAL);
+                                sendMessage(chatId, Constants.RECOMMENDATIONS_HOME_SETUP_ADULT_ANIMAL);
                                 break;
                             }
-                            case Constants.ARRANGEMENT_OF_CAT_WITH_DISABILITIES: {
+                            case Constants.SETUP_FOR_CAT_WITH_DISABILITIES: {
                                 logger.info("Обустройство кошки с ограниченными возможностями - ID:{}", chatId);
-                                sendMessage(chatId, Constants.ARRANGEMENT_FOR_DOG_WITH_DISABILITIES_INFO);
+                                sendMessage(chatId, Constants.SETUP_FOR_DOG_WITH_DISABILITIES_INFO);
                                 break;
                             }
-                            case Constants.ARRANGEMENT_OF_DOG_WITH_DISABILITIES: {
+                            case Constants.SETUP_FOR_DOG_WITH_DISABILITIES: {
                                 logger.info("Обустройство собаки с ограниченными возможностями - ID:{}", chatId);
-                                sendMessage(chatId, Constants.ARRANGEMENT_FOR_DOG_WITH_DISABILITIES_INFO);
+                                sendMessage(chatId, Constants.SETUP_FOR_DOG_WITH_DISABILITIES_INFO);
                                 break;
                             }
                             case Constants.DOG_HANDLERS_ADVICE: {
                                 logger.info("Советы кинолога - ID:{}", chatId);
-                                sendMessage(chatId, Constants.DOG_HANDLERS_ADVICE);
+                                sendMessage(chatId, Constants.DOG_HANDLERS_ADVICE_INFO);
                                 break;
                             }
                             case Constants.PROVEN_DOG_HANDLERS: {

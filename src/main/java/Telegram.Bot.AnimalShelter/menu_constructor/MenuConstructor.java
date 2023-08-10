@@ -41,7 +41,7 @@ public class MenuConstructor {
         replyKeyboardMarkup.addRow(new KeyboardButton(Constants.CALL_VOLUNTEER));
         replyKeyboardMarkup.addRow(new KeyboardButton(Constants.MAIN_MENU));
 
-        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "Выберите:");
+        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "Please choose an option");
     }
 
     public void sendListMenuCat(long chatId) {
@@ -50,7 +50,7 @@ public class MenuConstructor {
         shelters.forEach(shelter -> buttons.add(new KeyboardButton(shelter.getName())));
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup(buttons.toArray(new KeyboardButton[0]));
         replyKeyboardMarkup.addRow(new KeyboardButton(Constants.MAIN_MENU));
-        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "Список кошачьих приютов");
+        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "List of cat shelters");
     }
 
     public void sendListMenuDog(long chatId) {
@@ -59,7 +59,7 @@ public class MenuConstructor {
         shelters.forEach(shelter -> buttons.add(new KeyboardButton(shelter.getName())));
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup(buttons.toArray(new KeyboardButton[0]));
         replyKeyboardMarkup.addRow(new KeyboardButton(Constants.MAIN_MENU));
-        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "Список собачьих приютов");
+        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "List of dog shelters");
     }
 
     public void sendMenuCat(long chatId) {
@@ -74,7 +74,7 @@ public class MenuConstructor {
         replyKeyboardMarkup.addRow(new KeyboardButton(Constants.CALL_VOLUNTEER));
         replyKeyboardMarkup.addRow(new KeyboardButton(Constants.MAIN_MENU));
 
-        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "Информация о кошачьем приюте");
+        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "About shelter");
     }
 
     public void sendMenuDog(long chatId) {
@@ -89,7 +89,7 @@ public class MenuConstructor {
         replyKeyboardMarkup.addRow(new KeyboardButton(Constants.CALL_VOLUNTEER));
         replyKeyboardMarkup.addRow(new KeyboardButton(Constants.MAIN_MENU));
 
-        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "Информация о собачьем приюте");
+        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "About shelter");
     }
 
     public void menuCat(long chatId) {
@@ -105,7 +105,7 @@ public class MenuConstructor {
         replyKeyboardMarkup.addRow(
                 new KeyboardButton(Constants.MAIN_MENU)
         );
-        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "Все о кошках");
+        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "About cats");
     }
 
     public void menuDog(long chatId) {
@@ -121,7 +121,7 @@ public class MenuConstructor {
         replyKeyboardMarkup.addRow(
                 new KeyboardButton(Constants.MAIN_MENU)
         );
-        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "Все о собаках");
+        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "About dogs");
     }
 
     public void rulesForDogs(long chatId) {
@@ -132,7 +132,7 @@ public class MenuConstructor {
         );
         replyKeyboardMarkup.addRow(
                 new KeyboardButton(Constants.ADULT_DOG_SETUP),
-                new KeyboardButton(Constants.ARRANGEMENT_OF_DOG_WITH_DISABILITIES)
+                new KeyboardButton(Constants.SETUP_FOR_DOG_WITH_DISABILITIES)
         );
         replyKeyboardMarkup.addRow(
                 new KeyboardButton(Constants.DOG_HANDLERS_ADVICE),
@@ -151,7 +151,7 @@ public class MenuConstructor {
         replyKeyboardMarkup.addRow(
                 new KeyboardButton(Constants.ADULT_CAT_SETUP),
                 new KeyboardButton(Constants.KITTEN_SETUP),
-                new KeyboardButton(Constants.ARRANGEMENT_OF_CAT_WITH_DISABILITIES)
+                new KeyboardButton(Constants.SETUP_FOR_CAT_WITH_DISABILITIES)
         );
         replyKeyboardMarkup.addRow(
                 new KeyboardButton(Constants.BACK_TO_ALL_ABOUT_CATS)
