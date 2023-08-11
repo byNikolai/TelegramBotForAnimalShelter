@@ -73,7 +73,7 @@ public class VolunteerController {
     public String sendWarning(@RequestParam @Parameter(description = "Owner ID") Long ownerId) {
         telegramBot.execute(new SendMessage(ownerId,
                 "Dear Adopter,\n" +
-                        "+\n" +
+                        "\n" +
                         "We noticed that you are not filling out the report as detailed as necessary. \n" +
                         "Please take this task more seriously. \n" +
                         "Otherwise, the shelter volunteers will be obliged to personally check the conditions of the animal’s detention."));
