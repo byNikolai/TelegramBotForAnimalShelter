@@ -2,7 +2,6 @@ package Telegram.Bot.AnimalShelter.service.impl;
 
 import Telegram.Bot.AnimalShelter.entity.Adaptation;
 import Telegram.Bot.AnimalShelter.entity.DogOwner;
-import Telegram.Bot.AnimalShelter.entity.DogShelter;
 import Telegram.Bot.AnimalShelter.exception.EntryAlreadyExistsException;
 import Telegram.Bot.AnimalShelter.repository.DogOwnerRepository;
 import Telegram.Bot.AnimalShelter.service.AdaptationService;

@@ -3,7 +3,6 @@ package Telegram.Bot.AnimalShelter.controller;
 import Telegram.Bot.AnimalShelter.entity.Report;
 import Telegram.Bot.AnimalShelter.listener.TelegramBotUpdatesListener;
 import Telegram.Bot.AnimalShelter.service.ReportService;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;

@@ -2,7 +2,6 @@ package Telegram.Bot.AnimalShelter.service.impl;
 
 import Telegram.Bot.AnimalShelter.entity.Dog;
 import Telegram.Bot.AnimalShelter.entity.DogShelter;
-import Telegram.Bot.AnimalShelter.entity.Report;
 import Telegram.Bot.AnimalShelter.repository.DogShelterRepository;
 import Telegram.Bot.AnimalShelter.service.DogShelterService;
 import lombok.RequiredArgsConstructor;
