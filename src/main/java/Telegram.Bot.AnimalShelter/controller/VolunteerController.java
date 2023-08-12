@@ -74,8 +74,8 @@ public class VolunteerController {
         telegramBot.execute(new SendMessage(ownerId,
                 "Dear Adopter,\n" +
                         "\n" +
-                        "We noticed that you are not filling out the report as detailed as necessary. " +
-                        "Please take this task more seriously. " +
+                        "We noticed that you are not filling out the report as detailed as necessary. \n" +
+                        "Please take this task more seriously. \n" +
                         "Otherwise, the shelter volunteers will be obliged to personally check the conditions of the animal’s detention."));
         return "Message sent successfully";
     }
