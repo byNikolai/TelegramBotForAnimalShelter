@@ -1,7 +1,6 @@
 package Telegram.Bot.AnimalShelter.controller;
 
 import Telegram.Bot.AnimalShelter.entity.Adaptation;
-import Telegram.Bot.AnimalShelter.entity.Report;
 import Telegram.Bot.AnimalShelter.service.AdaptationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

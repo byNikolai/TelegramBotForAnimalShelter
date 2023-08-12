@@ -4,7 +4,6 @@ import Telegram.Bot.AnimalShelter.entity.Dog;
 import Telegram.Bot.AnimalShelter.entity.DogShelter;
 
 import Telegram.Bot.AnimalShelter.repository.DogShelterRepository;
-import Telegram.Bot.AnimalShelter.service.impl.DogShelterServiceImpl;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -2,7 +2,6 @@ package Telegram.Bot.AnimalShelter.service.impl;
 
 import Telegram.Bot.AnimalShelter.entity.Dog;
 import Telegram.Bot.AnimalShelter.repository.DogRepository;
-import Telegram.Bot.AnimalShelter.repository.DogShelterRepository;
 import Telegram.Bot.AnimalShelter.service.DogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
