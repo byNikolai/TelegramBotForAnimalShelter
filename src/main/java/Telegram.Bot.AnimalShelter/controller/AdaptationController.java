@@ -30,15 +30,13 @@ public class AdaptationController {
         this.adaptationService = adaptationService;
     }
 
+
     @PostMapping
     @Operation(summary = "Create adaptation")
-    public Adaptation create(@RequestParam @Parameter(description = "Start date of adaptation") LocalDate startDate,
-                             @RequestParam @Parameter(description = "Adaptation state") Adaptation.Result result,
-                             @RequestParam @Parameter(description = "Owner ID") Long ownerId,
-                             @RequestParam @Parameter(description = "Animal type") Adaptation.AnimalType animalType,
-                             @RequestParam @Parameter(description = "Animal ID") Long animalId) {
-        return adaptationService.create(new Adaptation(ownerId, animalId, animalType, startDate, startDate.plusDays(30),
-                startDate.minusDays(1), new ArrayList<>(), result));
+    public Adaptation create(@RequestBody CreateAdoptionRqDto dto) {
+        return adaptationService.create(new Adaptation(dto.getOwnerId(), dto.getAnimalId(), dto.getAnimalType(),
+                dto.getStartDate(), dto.getStartDate().plusDays(30), dto.getStartDate().minusDays(1),
+                new ArrayList<>(), dto.getResult()));
     }
 
     @GetMapping()
@@ -61,16 +59,9 @@ public class AdaptationController {
 
     @PutMapping
     @Operation(summary = "Update adaptation info")
-    public Adaptation update(@RequestParam @Parameter(description = "Adaptation Id") Long id,
-                              @RequestParam(required = false) @Parameter(description = "Start date of adaptation") LocalDate startDate,
-                              @RequestParam(required = false) @Parameter(description = "End date of adaptation") LocalDate endDate,
-                              @RequestParam(required = false) @Parameter(description = "Date of last report") LocalDate dateOfLastReport,
-                              @RequestParam(required = false) @Parameter(description = "Adaptation state") Adaptation.Result result,
-                              @RequestParam(required = false) @Parameter(description = "Owner ID") Long ownerId,
-                              @RequestParam(required = false) @Parameter(description = "Animal type") Adaptation.AnimalType animalType,
-                              @RequestParam(required = false) @Parameter(description = "Animal ID") Long animalId) {
-        return adaptationService.update(new Adaptation(new ArrayList<>(), id, ownerId, animalId, animalType, startDate, endDate,
-                dateOfLastReport, result));
+    public Adaptation update(@RequestBody UpdateAdaptationRqDto dto) {
+        return adaptationService.update(new Adaptation(new ArrayList<>(), dto.getId(), dto.getOwnerId(), dto.getAnimalId(), dto.getAnimalType(), dto.getStartDate(), dto.getStartDate().plusDays(30),
+                dto.getStartDate().minusDays(1), dto.getResult()));
     }
 
     @DeleteMapping("id")
