@@ -2,6 +2,7 @@ package Telegram.Bot.AnimalShelter.controller;
 
 import Telegram.Bot.AnimalShelter.entity.Adaptation;
 import Telegram.Bot.AnimalShelter.service.AdaptationService;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -17,9 +18,7 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.times;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(AdaptationController.class)
@@ -40,12 +39,16 @@ class AdaptationControllerTest {
     @Test
     void shouldCreateAndReturnAdaptation() throws Exception {
         when(adaptationService.create(any(Adaptation.class))).thenReturn(adaptation1);
+
+        JSONObject createAdoptionRq = new JSONObject();
+        createAdoptionRq.put("startDate", LocalDate.now());
+        createAdoptionRq.put("result", Adaptation.Result.IN_PROGRESS);
+        createAdoptionRq.put("ownerId", 1L);
+        createAdoptionRq.put("animalType", Adaptation.AnimalType.CAT);
+        createAdoptionRq.put("animalId", 1L);
+
         mockMvc.perform(post("/adaptation-periods")
-                        .param("startDate", String.valueOf(LocalDate.now()))
-                        .param("result", String.valueOf(Adaptation.Result.IN_PROGRESS))
-                        .param("ownerId", String.valueOf(1L))
-                        .param("animalType", String.valueOf(Adaptation.AnimalType.CAT))
-                        .param("animalId", String.valueOf(1L))
+                        .content(createAdoptionRq.toString())
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("reports").value(new ArrayList<>()))
@@ -56,9 +59,7 @@ class AdaptationControllerTest {
                 .andExpect(jsonPath("startDate").value(String.valueOf(LocalDate.now())))
                 .andExpect(jsonPath("endDate").value(String.valueOf(LocalDate.now().plusDays(30))))
                 .andExpect(jsonPath("dateOfLastReport").value(String.valueOf(LocalDate.now().minusDays(1))))
-                .andExpect(jsonPath("result").value(String.valueOf(Adaptation.Result.IN_PROGRESS)))
-
-        ;
+                .andExpect(jsonPath("result").value(String.valueOf(Adaptation.Result.IN_PROGRESS)));
 
         verify(adaptationService, times(1)).create(any(Adaptation.class));
     }
@@ -93,7 +94,7 @@ class AdaptationControllerTest {
     void shouldReturnListOfAllAdaptationsByOwnerId() throws Exception {
         when(adaptationService.getAllByOwnerId(1L)).thenReturn(AdaptationList);
         mockMvc.perform(get("/adaptation-periods/owner")
-                        .param("ownerId", String.valueOf(1L)))
+                .param("ownerId", String.valueOf(1L)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.[0].id").value(1L))
                 .andExpect(jsonPath("$.[0].startDate").value(String.valueOf(LocalDate.now())))
@@ -120,7 +121,7 @@ class AdaptationControllerTest {
     void shouldReturnAdaptationsById() throws Exception {
         when(adaptationService.getById(1L)).thenReturn(adaptation1);
         mockMvc.perform(get("/adaptation-periods/id")
-                        .param("id", String.valueOf(1L)))
+                .param("id", String.valueOf(1L)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id").value(1L))
                 .andExpect(jsonPath("startDate").value(String.valueOf(LocalDate.now())))
@@ -137,14 +138,17 @@ class AdaptationControllerTest {
     @Test
     void shouldUpdateAndReturnAdaptation() throws Exception {
         when(adaptationService.update(any(Adaptation.class))).thenReturn(adaptation1);
+        JSONObject updateAdaptationRqDto = new JSONObject();
+        updateAdaptationRqDto.put("id", 1L);
+        updateAdaptationRqDto.put("startDate", String.valueOf(LocalDate.now()));
+        updateAdaptationRqDto.put("result", String.valueOf(Adaptation.Result.IN_PROGRESS));
+        updateAdaptationRqDto.put("ownerId", String.valueOf(1L));
+        updateAdaptationRqDto.put("animalType", String.valueOf(Adaptation.AnimalType.CAT));
+        updateAdaptationRqDto.put("animalId", String.valueOf(1L));
+
         mockMvc.perform(put("/adaptation-periods")
-                        .param("id", String.valueOf(1L))
-                        .param("startDate", String.valueOf(LocalDate.now()))
-                        .param("result", String.valueOf(Adaptation.Result.IN_PROGRESS))
-                        .param("ownerId", String.valueOf(1L))
-                        .param("animalType", String.valueOf(Adaptation.AnimalType.CAT))
-                        .param("animalId", String.valueOf(1L))
-                        .contentType(MediaType.APPLICATION_JSON))
+                .content(updateAdaptationRqDto.toString())
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("reports").value(new ArrayList<>()))
                 .andExpect(jsonPath("id").value(1L))
@@ -164,7 +168,7 @@ class AdaptationControllerTest {
     void shouldReturnMessageWhenAdaptationDeleted() throws Exception {
         doNothing().when(adaptationService).deleteById(1L);
         mockMvc.perform(delete("/adaptation-periods/id")
-                        .param("id", String.valueOf(1L)))
+                .param("id", String.valueOf(1L)))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Adaptation removed successfully"));
         verify(adaptationService, times(1)).deleteById(1L);

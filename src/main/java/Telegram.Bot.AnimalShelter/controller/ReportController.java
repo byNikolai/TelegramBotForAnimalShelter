@@ -63,13 +63,6 @@ public class ReportController {
         return reportService.getByDateAndAdaptationPeriodId(LocalDate.parse(date), id);
     }
 
-//    @GetMapping("date-and-adaptation")
-//    @Operation(summary = "Return by date and adaptation ID")
-//    public Report getByDateAndAdaptationPeriodId(@RequestParam @Parameter(description = "Receive date") LocalDate date,
-//                                      @RequestParam @Parameter(description = "Adaptation ID") Long id) {
-//        return reportService.getByDateAndAdaptationPeriodId(date, id);
-//    }
-
     @GetMapping("id")
     @Operation(summary = "Return report by ID")
     public Report getById(@RequestParam @Parameter(description = "Adaptation ID") Long reportId) {
