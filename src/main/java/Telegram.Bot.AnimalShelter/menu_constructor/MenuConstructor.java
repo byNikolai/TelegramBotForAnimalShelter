@@ -11,9 +11,13 @@ import com.pengrad.telegrambot.model.request.ParseMode;
 import com.pengrad.telegrambot.model.request.ReplyKeyboardMarkup;
 import com.pengrad.telegrambot.request.SendMessage;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 @RequiredArgsConstructor
 public class MenuConstructor {
@@ -21,6 +25,7 @@ public class MenuConstructor {
     private final TelegramBot telegramBot;
     private final CatShelterServiceImpl catShelterService;
     private final DogShelterServiceImpl dogShelterService;
+    private ResourceBundle messagesBundle = ResourceBundle.getBundle("messages");
 
 
     public void sendStartMenu(long chatId) {
@@ -29,7 +34,7 @@ public class MenuConstructor {
                 new KeyboardButton(Constants.DOG_SHELTER));
         replyKeyboardMarkup.addRow(new KeyboardButton(Constants.CALL_VOLUNTEER),
                 new KeyboardButton(Constants.SEND_REPORT));
-        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, Constants.WELCOME);
+        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, messagesBundle.getString("WELCOME"));
     }
 
 
