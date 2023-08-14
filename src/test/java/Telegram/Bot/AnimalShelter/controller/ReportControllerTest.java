@@ -2,6 +2,7 @@ package Telegram.Bot.AnimalShelter.controller;
 
 import Telegram.Bot.AnimalShelter.entity.Report;
 import Telegram.Bot.AnimalShelter.listener.TelegramBotUpdatesListener;
+import Telegram.Bot.AnimalShelter.listener.TelegramBotUpdatesListenerFunctions;
 import Telegram.Bot.AnimalShelter.service.ReportService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,9 +28,9 @@ class ReportControllerTest {
 
     @Autowired
     MockMvc mockMvc;
-
+    
     @MockBean
-    TelegramBotUpdatesListener telegramBotUpdatesListener;
+    TelegramBotUpdatesListenerFunctions telegramBotUpdatesListenerFunctions;
 
     @MockBean
     ReportService reportService;
@@ -164,12 +165,12 @@ class ReportControllerTest {
 
     @Test
     void shouldReturnMessageWhenReportPhotoWasSend() throws Exception {
-        doNothing().when(telegramBotUpdatesListener).sendReportPhotoToVolunteer(1L, 1L);
+        doNothing().when(telegramBotUpdatesListenerFunctions).sendReportPhotoToVolunteer(1L, 1L);
         mockMvc.perform(get("/reports/report-photo")
                         .param("reportId", "1")
                         .param("volunteerId", "1"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Photo sent successfully"));
-        verify(telegramBotUpdatesListener, times(1)).sendReportPhotoToVolunteer(1L, 1L);
+        verify(telegramBotUpdatesListenerFunctions, times(1)).sendReportPhotoToVolunteer(1L, 1L);
     }
 }
