@@ -2,6 +2,7 @@ package Telegram.Bot.AnimalShelter.controller;
 
 import Telegram.Bot.AnimalShelter.entity.Report;
 import Telegram.Bot.AnimalShelter.listener.TelegramBotUpdatesListener;
+import Telegram.Bot.AnimalShelter.listener.TelegramBotUpdatesListenerFunctions;
 import Telegram.Bot.AnimalShelter.service.ReportService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -25,11 +26,12 @@ import java.util.List;
 public class ReportController {
 
     private final ReportService reportService;
-    private final TelegramBotUpdatesListener telegramBotUpdatesListener;
 
-    public ReportController(ReportService reportService, TelegramBotUpdatesListener telegramBotUpdatesListener) {
+    private final TelegramBotUpdatesListenerFunctions telegramBotUpdatesListenerFunctions;
+
+    public ReportController(ReportService reportService, TelegramBotUpdatesListenerFunctions telegramBotUpdatesListenerFunctions) {
         this.reportService = reportService;
-        this.telegramBotUpdatesListener = telegramBotUpdatesListener;
+        this.telegramBotUpdatesListenerFunctions = telegramBotUpdatesListenerFunctions;
     }
 
     @PostMapping
@@ -92,7 +94,7 @@ public class ReportController {
     @Operation(summary = "Send photo to volunteer")
     public String getReportPhoto(@RequestParam @Parameter(description = "Report ID") Long reportId,
                                  @RequestParam @Parameter(description = "Volunteer ID") Long volunteerId) {
-        telegramBotUpdatesListener.sendReportPhotoToVolunteer(reportId, volunteerId);
+        telegramBotUpdatesListenerFunctions.sendReportPhotoToVolunteer(reportId, volunteerId);
         return "Photo sent successfully";
     }
 }
