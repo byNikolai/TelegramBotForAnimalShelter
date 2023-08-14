@@ -33,13 +33,13 @@ public class ReportServiceImpl implements ReportService {
      * @return Список для создания отчета
      */
     private List<String> separateInfoFromReport(String info) {
-        Pattern pattern = Pattern.compile("(Overall Health:)\\s(\\W+);\\n(Behavior Change:)\\s(\\W+);\\n(Ration:)\\s(\\W+);");
+        Pattern pattern = Pattern.compile("Ration: ([\\w\\s]+);\\s\\nOverall health: ([\\w\\s]+);\\s\\nBehavior Change: ([\\w\\s]+);");
         if (info == null || info.isBlank()) {
             throw new IllegalArgumentException("There is no report. Please, try again and put more information");
         }
         Matcher matcher = pattern.matcher(info);
         if (matcher.find()) {        //The find method scans the input sequence looking for the next subsequence that matches the pattern.
-            return new ArrayList<>(List.of(matcher.group(2), matcher.group(4), matcher.group(6)));
+            return new ArrayList<>(List.of(matcher.group(0), matcher.group(1), matcher.group(2)));
         } else {
             throw new IllegalArgumentException("Invalid data. Please, check if data is correct and try to send report once more");
         }
