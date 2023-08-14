@@ -36,6 +36,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -53,6 +54,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
     private final AdaptationService adaptationService;
     private final ReportService reportService;
     private final Logger logger = LoggerFactory.getLogger(TelegramBotUpdatesListener.class);
+    private ResourceBundle messagesBundle = ResourceBundle.getBundle("messages");
 
     @PostConstruct
     public void init() {
@@ -231,32 +233,32 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                             }
                             case Constants.RULES_FOR_DATING_A_CAT: {
                                 logger.info("Правила знакомства с котами- ID:{}", chatId);
-                                sendMessage(chatId, Constants.ANIMAL_DATING_RULES);
+                                sendMessage(chatId, messagesBundle.getString("ANIMAL_DATING_RULES"));
                                 break;
                             }
                             case Constants.RULES_FOR_DATING_A_DOG: {
                                 logger.info("Правила знакомства с собаками- ID:{}", chatId);
-                                sendMessage(chatId, Constants.ANIMAL_DATING_RULES);
+                                sendMessage(chatId, messagesBundle.getString("ANIMAL_DATING_RULES"));
                                 break;
                             }
                             case Constants.CAT_TRANSPORTATION: {
                                 logger.info("Перевозка котов - ID:{}", chatId);
-                                sendMessage(chatId, Constants.TRANSPORTATION_OF_THE_ANIMAL);
+                                sendMessage(chatId, messagesBundle.getString("TRANSPORTATION_OF_THE_ANIMAL"));
                                 break;
                             }
                             case Constants.DOG_TRANSPORTATION: {
                                 logger.info("Перевозка собак - ID:{}", chatId);
-                                sendMessage(chatId, Constants.TRANSPORTATION_OF_THE_ANIMAL);
+                                sendMessage(chatId, messagesBundle.getString("TRANSPORTATION_OF_THE_ANIMAL"));
                                 break;
                             }
                             case Constants.REQUIRED_DOCUMENTS: {
                                 logger.info("Необходимые документы - ID:{}", chatId);
-                                sendMessage(chatId, Constants.LIST_OF_DOCUMENTS);
+                                sendMessage(chatId, messagesBundle.getString("LIST_OF_DOCUMENTS"));
                                 break;
                             }
                             case Constants.LIST_OF_REASONS: {
                                 logger.info("Список причин для отказа выдачи питомца - ID:{}", chatId);
-                                sendMessage(chatId, Constants.LIST_OF_REASON_FOR_DENY);
+                                sendMessage(chatId, messagesBundle.getString("LIST_OF_REASON_FOR_DENY"));
                                 break;
                             }
                             case Constants.RECOMMENDATIONS_FOR_DOGS: {
@@ -271,42 +273,42 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                             }
                             case Constants.PUPPY_SETUP: {
                                 logger.info("Обустройство щенка - ID:{}", chatId);
-                                sendMessage(chatId, Constants.RECOMMENDATIONS_HOME_SETUP_KITTEN_PUPPY);
+                                sendMessage(chatId, messagesBundle.getString("RECOMMENDATIONS_HOME_SETUP_KITTEN_PUPPY"));
                                 break;
                             }
                             case Constants.KITTEN_SETUP: {
                                 logger.info("Обустройство котенка - ID:{}", chatId);
-                                sendMessage(chatId, Constants.RECOMMENDATIONS_HOME_SETUP_KITTEN_PUPPY);
+                                sendMessage(chatId, messagesBundle.getString("RECOMMENDATIONS_HOME_SETUP_KITTEN_PUPPY"));
                                 break;
                             }
                             case Constants.ADULT_CAT_SETUP: {
                                 logger.info("Обустройство взрослой кошки - ID:{}", chatId);
-                                sendMessage(chatId, Constants.RECOMMENDATIONS_HOME_SETUP_ADULT_ANIMAL);
+                                sendMessage(chatId, messagesBundle.getString("RECOMMENDATIONS_HOME_SETUP_ADULT_ANIMAL"));
                                 break;
                             }
                             case Constants.ADULT_DOG_SETUP: {
                                 logger.info("Обустройство взрослой собаки - ID:{}", chatId);
-                                sendMessage(chatId, Constants.RECOMMENDATIONS_HOME_SETUP_ADULT_ANIMAL);
+                                sendMessage(chatId, messagesBundle.getString("RECOMMENDATIONS_HOME_SETUP_ADULT_ANIMAL"));
                                 break;
                             }
                             case Constants.SETUP_FOR_CAT_WITH_DISABILITIES: {
                                 logger.info("Обустройство кошки с ограниченными возможностями - ID:{}", chatId);
-                                sendMessage(chatId, Constants.SETUP_FOR_DOG_WITH_DISABILITIES_INFO);
+                                sendMessage(chatId, messagesBundle.getString("SETUP_FOR_DOG_WITH_DISABILITIES_INFO"));
                                 break;
                             }
                             case Constants.SETUP_FOR_DOG_WITH_DISABILITIES: {
                                 logger.info("Обустройство собаки с ограниченными возможностями - ID:{}", chatId);
-                                sendMessage(chatId, Constants.SETUP_FOR_DOG_WITH_DISABILITIES_INFO);
+                                sendMessage(chatId, messagesBundle.getString("SETUP_FOR_DOG_WITH_DISABILITIES_INFO"));
                                 break;
                             }
                             case Constants.DOG_HANDLERS_ADVICE: {
                                 logger.info("Советы кинолога - ID:{}", chatId);
-                                sendMessage(chatId, Constants.DOG_HANDLERS_ADVICE_INFO);
+                                sendMessage(chatId, messagesBundle.getString("DOG_HANDLERS_ADVICE_INFO"));
                                 break;
                             }
                             case Constants.PROVEN_DOG_HANDLERS: {
                                 logger.info("Проверенные кинологи для обращения - ID:{}", chatId);
-                                sendMessage(chatId, Constants.DOG_HANDLERS_CONTACTS);
+                                sendMessage(chatId, messagesBundle.getString("DOG_HANDLERS_CONTACTS"));
                                 break;
                             }
                             case Constants.SEND_REPORT: {
