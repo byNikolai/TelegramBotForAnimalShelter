@@ -447,11 +447,11 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
         for (User user : userService.getAll()) {
             for (Adaptation adaptation : adaptationService.getAllByOwnerId(user.getTelegramId())) {
                 if (adaptation.getResult().equals(Adaptation.Result.UNSUCCESSFUL)) {
-                    sendMessage(user.getTelegramId(), Constants.ADAPTATION_NOT_SUCCESSFUL);
+                    sendMessage(user.getTelegramId(), messagesBundle.getString("ADAPTATION_NOT_SUCCESSFUL"));
                 } else if (adaptation.getResult().equals(Adaptation.Result.EXTENDED)) {
-                    sendMessage(user.getTelegramId(), Constants.ADAPTATION_EXTENDED);
+                    sendMessage(user.getTelegramId(), messagesBundle.getString("ADAPTATION_EXTENDED"));
                 } else if (adaptation.getResult().equals(Adaptation.Result.SUCCESSFUL)) {
-                    sendMessage(user.getTelegramId(), Constants.SUCCESSFUL);
+                    sendMessage(user.getTelegramId(), messagesBundle.getString("SUCCESSFUL"));
                 }
             }
         }
