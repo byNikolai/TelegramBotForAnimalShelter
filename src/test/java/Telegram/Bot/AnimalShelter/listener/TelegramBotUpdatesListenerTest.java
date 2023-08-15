@@ -60,6 +60,8 @@ class TelegramBotUpdatesListenerTest {
     AdaptationService adaptationService;
     @Mock
     UserRepository userRepository;
+    @Mock
+    TelegramBotUpdatesListenerFunctions telegramBotUpdatesListenerFunctions;
     @InjectMocks
     TelegramBotUpdatesListener telegramBotUpdatesListener;
 
@@ -138,7 +140,7 @@ class TelegramBotUpdatesListenerTest {
         when(reportService.getById(any())).thenReturn(report);
         when(adaptationService.getById(1L)).thenReturn(adaptation);
         when(telegramBot.getFileContent(any())).thenReturn(photo);
-        telegramBotUpdatesListener.sendReportPhotoToVolunteer(1L, 1L);
+        telegramBotUpdatesListenerFunctions.sendReportPhotoToVolunteer(1L, 1L);
         ArgumentCaptor<SendPhoto> argumentCaptor = ArgumentCaptor.forClass(SendPhoto.class);
         Mockito.verify(telegramBot, times(2)).execute(argumentCaptor.capture());
         SendPhoto actual = argumentCaptor.getValue();
